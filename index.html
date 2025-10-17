@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>获取店铺宣传视频</title>
+  <title>枕朵记忆枕 - 视频分享</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   
@@ -12,8 +12,8 @@
       theme: {
         extend: {
           colors: {
-            primary: '#FE2C55',
-            secondary: '#4CAF50',
+            primary: '#6B9BCC',
+            secondary: '#E6EEF7',
           },
         },
       }
@@ -24,7 +24,7 @@
     @layer utilities {
       .progress-bar {
         height: 4px;
-        background: linear-gradient(90deg, #FE2C55 0%, #FE2C55 var(--progress, 0%), #e5e7eb var(--progress, 0%));
+        background: linear-gradient(90deg, #6B9BCC 0%, #6B9BCC var(--progress, 0%), #e5e7eb var(--progress, 0%));
         transition: --progress 0.3s ease;
       }
       .pulse {
@@ -42,18 +42,23 @@
 
 <body class="bg-gray-50 min-h-screen">
   <div class="max-w-md mx-auto p-6 py-12">
-    <!-- 店铺信息 -->
+    <!-- 品牌信息区 -->
     <div class="text-center mb-8">
-      <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-        <i class="fa fa-shopping-bag text-white text-2xl"></i>
+      <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-primary/20 pulse">
+        <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/c34973157c0c4df0a18738eb8ff85726.jpg~tplv-a9rns2rl98-24-95-exif:1080:1080.image?rcl=2025101710531621717E68EF3945803D50&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761274396&x-signature=j1Sp5IqKMSg1QnS1hOyBNAuwWrE%3D" 
+             alt="枕朵品牌LOGO" 
+             class="w-20 h-20 object-contain"
+             onerror="this.src='https://picsum.photos/200/200'; this.alt='枕朵LOGO';">
       </div>
       <h1 class="text-2xl font-bold text-gray-800">枕朵新媒体运营中心</h1>
-      <p class="text-gray-500 mt-1">感谢您的光临</p>
+      <p class="text-gray-500 mt-1">佛山记忆枕体验中心</p>
     </div>
     
-    <!-- 视频预览 -->
+    <!-- 视频预览区 -->
     <div class="relative rounded-xl overflow-hidden mb-6 aspect-video bg-gray-100 shadow-md">
-      <img src="https://picsum.photos/800/450?food" alt="宣传视频预览" class="w-full h-full object-cover">
+      <img src="https://picsum.photos/seed/zhenduo/800/450" 
+           alt="枕朵记忆枕产品展示" 
+           class="w-full h-full object-cover">
       <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
         <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
           <i class="fa fa-play text-white text-xl"></i>
@@ -61,11 +66,10 @@
       </div>
     </div>
     
-    <!-- 下载区域 -->
+    <!-- 视频下载区 -->
     <div class="bg-white rounded-xl p-5 shadow-sm mb-6">
       <h2 class="text-lg font-semibold text-gray-800 mb-4">正在准备您的视频...</h2>
       
-      <!-- 下载进度 -->
       <div class="mb-4">
         <div class="flex justify-between text-sm mb-1">
           <span id="downloadStatus" class="text-gray-600">视频下载中</span>
@@ -74,21 +78,26 @@
         <div class="progress-bar w-full rounded-full"></div>
       </div>
       
-      <!-- 备用下载按钮 -->
-      <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="hidden w-full flex items-center justify-center bg-secondary text-white py-2.5 rounded-lg text-sm font-medium mt-4" id="downloadBtn">
-        <i class="fa fa-download mr-2"></i>点击手动下载视频
+      <a href="https://cowtransfer.com/s/5398dc242c344a" 
+         target="_blank" 
+         class="hidden w-full flex items-center justify-center bg-secondary text-primary py-2.5 rounded-lg text-sm font-medium mt-4" 
+         id="downloadBtn"
+         download="枕朵记忆枕宣传视频.mp4">
+        <i class="fa fa-download mr-2"></i>点击下载视频（MP4格式）
       </a>
       
-      <!-- 提取码提示 -->
       <div class="hidden mt-4 p-3 bg-gray-50 rounded-lg" id="code提示">
-        <p class="text-sm text-gray-600 flex items-center">
+        <p class="text-sm text-gray-600 flex items-center mb-2">
           <i class="fa fa-key text-primary mr-2"></i>
           视频提取码：<span class="font-medium ml-1">b6h73a</span>
+        </p>
+        <p class="text-xs text-gray-500">
+          若提示“不支持文件类型”，请复制链接到手机浏览器打开
         </p>
       </div>
     </div>
     
-    <!-- 文案区域 -->
+    <!-- 文案区 -->
     <div class="bg-white rounded-xl p-5 shadow-sm mb-6">
       <h3 class="text-gray-700 font-medium mb-3 flex items-center">
         <i class="fa fa-file-text-o text-primary mr-2"></i>
@@ -96,7 +105,9 @@
       </h3>
       
       <div class="border border-gray-100 rounded-lg p-3 bg-gray-50">
-        <p class="text-gray-800 text-sm mb-3">【舒适推荐】这家佛山枕朵记忆枕体验中心的新品太赞了！枕芯柔软又有支撑，睡感超棒～ 打卡还有惊喜哦～ #枕朵 #枕头推荐 #舒适睡眠 #周末去哪儿</p>
+        <p class="text-gray-800 text-sm mb-3" id="shareText">
+          【舒适推荐】这家佛山枕朵记忆枕体验中心的新品太赞了！枕芯柔软又有支撑，睡感超棒～ 打卡还有惊喜哦～ #枕朵 #枕头推荐 #舒适睡眠 #周末去哪儿
+        </p>
         
         <button id="copyTextBtn" class="w-full text-primary border border-primary py-2 rounded-lg text-sm font-medium hover:bg-primary/5 transition-colors">
           <i class="fa fa-copy mr-1"></i>复制文案
@@ -112,8 +123,8 @@
     
     <!-- 操作指引 -->
     <div class="text-center text-gray-500 text-xs mt-8">
-      <p>若视频未自动下载，请点击"手动下载"按钮</p>
-      <p class="mt-1">发布视频后可向店员出示领取8折优惠券</p>
+      <p>若视频下载报错，可手动访问：<a href="https://cowtransfer.com/s/5398dc242c344a" class="text-primary underline" target="_blank">点击下载</a></p>
+      <p class="mt-1">发布视频后向店员出示，即可领取惊喜福利</p>
     </div>
   </div>
   
@@ -135,78 +146,72 @@
     const toast = document.getElementById('toast');
     const toastText = document.getElementById('toastText');
     const toastIcon = document.getElementById('toastIcon');
-    
-    // 视频地址（你的奶牛快传链接）
+    const shareText = document.getElementById('shareText').textContent;
     const videoUrl = "https://cowtransfer.com/s/5398dc242c344a";
-    // 发布文案
-    const shareText = "【舒适推荐】这家佛山枕朵记忆枕体验中心的新品太赞了！枕芯柔软又有支撑，睡感超棒～ 打卡还有惊喜哦～ #枕朵 #枕头推荐 #舒适睡眠 #周末去哪儿";
     
     // 显示提示
     function showToast(text, isSuccess = true) {
       toastText.textContent = text;
       toastIcon.className = isSuccess ? 'fa fa-check-circle mr-2 text-green-400' : 'fa fa-exclamation-circle mr-2 text-yellow-400';
       toast.classList.remove('hidden');
-      
-      setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 3000);
+      setTimeout(() => toast.classList.add('hidden'), 3000);
     }
     
-    // 模拟下载进度（实际中根据视频下载情况更新）
+    // 模拟下载进度
     let progress = 0;
     const progressInterval = setInterval(() => {
       progress += 5;
       if (progress >= 100) {
         progress = 100;
         clearInterval(progressInterval);
-        
-        // 下载完成后更新状态
         downloadStatus.textContent = "视频准备完成";
         downloadBtn.classList.remove('hidden');
         code提示.classList.remove('hidden');
         shareToDouyinBtn.classList.remove('hidden');
-        
-        showToast("视频已准备好，可发布到抖音");
+        setTimeout(() => showToast("若下载报错，可手动访问链接获取视频", false), 1500);
       }
-      
-      // 更新进度条
       progressBar.style.setProperty('--progress', `${progress}%`);
       downloadPercent.textContent = `${progress}%`;
     }, 300);
     
     // 复制文案
     copyTextBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(shareText).then(() => {
-        showToast('文案已复制，可直接粘贴到抖音');
-      }).catch(err => {
-        showToast('复制失败，请手动复制', false);
-        console.error('复制失败:', err);
-      });
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareText)
+          .then(() => showToast('文案已复制，可直接粘贴到抖音'))
+          .catch(() => {
+            showToast('复制失败，请手动复制', false);
+            const range = document.createRange();
+            range.selectNodeContents(document.getElementById('shareText'));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+          });
+      } else {
+        showToast('浏览器不支持自动复制，请手动复制', false);
+      }
     });
     
-    // 一键发布到抖音
+    // 抖音发布
     shareToDouyinBtn.addEventListener('click', () => {
-      // 由于是通过奶牛快传下载，视频路径不确定，这里采用跳转上传页+自动填充文案的方式
-      const encodedText = encodeURIComponent(shareText);
-      
-      // 抖音发布页的URL Scheme（仅携带文案）
-      const douyinUrl = `snssdk1128://create/video?title=${encodedText}`;
-      
+      const douyinUrl = `snssdk1128://create/video?title=${encodeURIComponent(shareText)}`;
       try {
         window.location.href = douyinUrl;
-        showToast('正在打开抖音发布页...');
+        setTimeout(() => showToast('若未跳转，请手动打开抖音', false), 1500);
       } catch (err) {
         showToast('请手动打开抖音并上传视频', false);
       }
     });
     
-    // 页面加载完成后尝试自动打开视频下载页
-    window.onload = function() {
-      // 延迟1秒后自动打开奶牛快传链接（避免浏览器拦截）
-      setTimeout(() => {
-        // 打开一个新窗口显示奶牛快传的下载页
-        window.open(videoUrl, '_blank');
-      }, 1000);
+    // 自动打开下载页
+    window.onload = () => {
+      if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        setTimeout(() => {
+          const newTab = window.open(videoUrl, '_blank');
+          if (!newTab) showToast('下载弹窗被拦截，请点击"手动下载"按钮', false);
+        }, 1500);
+      } else {
+        showToast('建议在手机上打开以体验完整功能', false);
+      }
     };
   </script>
 </body>
