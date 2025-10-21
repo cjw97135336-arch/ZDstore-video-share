@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频热点榜测试页面</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 统一的 Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3D5A80',
+            secondary: '#6B7280',
+            light: '#F3F4F6',
+            dark: '#1F2937',
+            douyin: '#FE2C55'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <!-- 移动端导航 -->
+      <div class="md:hidden flex justify-between items-center py-3">
+        <h1 class="text-xl font-bold text-primary">枕朵新媒体</h1>
+        <button id="menu-toggle" class="text-gray-600 hover:text-primary focus:outline-none">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+      
+      <!-- 移动端菜单 -->
+      <div id="mobile-menu" class="md:hidden hidden pb-3">
+        <div class="grid grid-cols-3 gap-2">
+          <a href="index.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-home text-xl mb-1"></i>
+            <span class="text-sm">首页</span>
+          </a>
+          <a href="hotspot.html" class="flex flex-col items-center justify-center py-3 text-douyin hover:bg-gray-50 rounded-md font-medium transition-all">
+            <i class="fa fa-fire text-xl mb-1"></i>
+            <span class="text-sm">视频热点榜</span>
+          </a>
+          <a href="materials.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-picture-o text-xl mb-1"></i>
+            <span class="text-sm">素材资源</span>
+          </a>
+          <a href="admin.html" class="flex flex-col items-center justify-center py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-cog text-xl mb-1"></i>
+            <span class="text-sm">管理中心</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 桌面端导航 -->
+      <div class="hidden md:flex justify-between items-center py-4">
+        <div class="flex items-center space-x-2">
+          <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-10 w-10">
+          <span class="text-xl font-bold text-primary">枕朵新媒体运营中心</span>
+        </div>
+        
+        <div class="flex items-center space-x-8">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-home mr-1"></i> 首页
+          </a>
+          <a href="hotspot.html" class="text-douyin hover:text-douyin font-medium transition-all">
+            <i class="fa fa-fire mr-1"></i> 视频热点榜
+          </a>
+          <a href="admin.html" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-cog mr-1"></i> 管理中心
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- 页面标题 -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-douyin mb-2">视频热点榜测试</h1>
+      <p class="text-gray-600">测试热点榜加载功能</p>
+    </div>
+    
+    <!-- 测试控制区 -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+      <h2 class="text-xl font-semibold mb-4 text-primary">测试控制</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="font-medium mb-2">测试数据</h3>
+          <div class="flex flex-wrap gap-2">
+            <button id="loadSampleData" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all">
+              <i class="fa fa-database mr-2"></i> 加载示例数据
+            </button>
+            <button id="clearData" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all">
+              <i class="fa fa-trash mr-2"></i> 清除数据
+            </button>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-medium mb-2">localStorage状态</h3>
+          <div class="flex items-center">
+            <span id="storageStatus" class="mr-2">检查中...</span>
+            <button id="checkStorage" class="bg-gray-200 text-gray-700 px-3 py-1 rounded hover:bg-gray-300 transition-all text-sm">
+              刷新状态
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-4">
+        <h3 class="font-medium mb-2">数据统计</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-gray-50 p-3 rounded-md">
+            <p class="text-sm text-gray-500">总数据量</p>
+            <p id="totalItems" class="text-xl font-bold text-primary">0</p>
+          </div>
+          <div class="bg-gray-50 p-3 rounded-md">
+            <p class="text-sm text-gray-500">家纺类</p>
+            <p id="homeTextileItems" class="text-xl font-bold text-primary">0</p>
+          </div>
+          <div class="bg-gray-50 p-3 rounded-md">
+            <p class="text-sm text-gray-500">家居类</p>
+            <p id="homeDecorItems" class="text-xl font-bold text-primary">0</p>
+          </div>
+          <div class="bg-gray-50 p-3 rounded-md">
+            <p class="text-sm text-gray-500">热门项</p>
+            <p id="hotItems" class="text-xl font-bold text-primary">0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 筛选和排序 -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+      <div class="flex flex-col gap-4">
+        <div>
+          <label for="categoryFilter" class="block text-sm font-medium text-gray-700 mb-1">分类筛选</label>
+          <select id="categoryFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+            <option value="">全部分类</option>
+            <option value="家纺类">家纺类</option>
+            <option value="家居类">家居类</option>
+            <option value="IP类">IP类</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="flex justify-between items-center">
+          <div class="w-full md:w-auto md:mr-4">
+            <label for="sortBy" class="block text-sm font-medium text-gray-700 mb-1">排序方式</label>
+            <select id="sortBy" class="w-full md:w-48 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+              <option value="publishTime">最新发布</option>
+              <option value="likeCount">最多点赞</option>
+              <option value="commentCount">最多评论</option>
+              <option value="shareCount">最多分享</option>
+            </select>
+          </div>
+          <div class="text-sm text-gray-500 md:mt-0">
+            <span id="totalCount" class="font-medium">0</span> 条内容
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 加载状态 -->
+    <div id="loadingState" class="py-12 text-center">
+      <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-douyin"></div>
+      <p class="mt-3 text-gray-600">加载中...</p>
+    </div>
+    
+    <!-- 错误状态 -->
+    <div id="errorState" class="hidden py-12 text-center">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 mb-4">
+        <i class="fa fa-exclamation-triangle text-red-500 text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-medium text-gray-900 mb-1">加载失败</h3>
+      <p id="errorMessage" class="text-gray-500 mb-6">未知错误</p>
+      <button id="retryBtn" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all inline-flex items-center">
+        <i class="fa fa-refresh mr-2"></i> 重试
+      </button>
+    </div>
+    
+    <!-- 空状态 -->
+    <div id="emptyState" class="hidden py-12 text-center">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+        <i class="fa fa-folder-open text-gray-400 text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-medium text-gray-900 mb-1">暂无热点数据</h3>
+      <p class="text-gray-500 mb-6">管理员尚未添加热点内容</p>
+      <a href="admin.html" class="bg-douyin text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all inline-flex items-center">
+        <i class="fa fa-plus mr-2"></i> 去添加热点
+      </a>
+    </div>
+    
+    <!-- 热点列表 -->
+    <div id="hotspotList" class="space-y-6">
+      <!-- 热点内容将通过JavaScript动态填充 -->
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <div class="flex items-center space-x-2">
+            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-8 w-8">
+            <span class="text-lg font-bold text-primary">新媒体运营中心</span>
+          </div>
+          <p class="text-gray-500 text-sm mt-1">枕朵专业全域流量赋能家纺、家具店</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="text-gray-500 text-sm">© 2025 新媒体运营中心. 保留所有权利.</p>
+          <p class="text-gray-400 text-xs mt-1">数据来源：本地管理系统</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 修复后的热点管理器 -->
+  <script>
+    /**
+     * 抖音热点数据管理系统
+     * 用于本地管理抖音热点数据，无需接入API
+     */
+
+    const HotspotManager = {
+      // 存储键名
+      STORAGE_KEY: 'douyin_hotspot_data',
+      
+      // 初始化数据
+      init() {
+        try {
+          // 检查localStorage是否可用
+          if (typeof localStorage === 'undefined') {
+            console.error('localStorage is not available');
+            throw new Error('本地存储不可用');
+          }
+          
+          if (!localStorage.getItem(this.STORAGE_KEY)) {
+            const initialData = [
+              {
+                id: this.generateId(),
+                title: "家纺不知道怎么拍视频？来，给你安排！",
+                description: "家纺店引流必备的5个拍摄技巧，让你的视频播放量轻松过万！",
+                likeCount: 3200,
+                commentCount: 450,
+                favoriteCount: 890,
+                shareCount: 210,
+                publishTime: "2023-07-20",
+                videoUrl: "https://v.douyin.com/HCdtyoQpuHs/",
+                coverImage: "https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/7ab19ed0913849d18ad7b4d641f77c58~tplv-a9rns2rl98-image.image",
+                category: "家纺类",
+                tags: ["家纺", "拍摄技巧", "引流"],
+                isHot: true,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+              },
+              {
+                id: this.generateId(),
+                title: "现代简约风格家居搭配指南",
+                description: "如何用简单的家居搭配营造高级感，让你的家焕然一新！",
+                likeCount: 2100,
+                commentCount: 320,
+                favoriteCount: 580,
+                shareCount: 150,
+                publishTime: "2023-07-19",
+                videoUrl: "https://v.douyin.com/HCdtyoQpuHs/",
+                coverImage: "https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/f5d897b4034747819358d15757a4514a~tplv-a9rns2rl98-image.image",
+                category: "家居类",
+                tags: ["家居", "搭配", "简约风格"],
+                isHot: false,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+              }
+            ];
+            this.saveData(initialData);
+          }
+        } catch (error) {
+          console.error('Failed to initialize data:', error);
+          throw error; // 重新抛出错误，让调用者处理
+        }
+      },
+      
+      // 生成唯一ID
+      generateId() {
+        return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+      },
+      
+      // 获取所有数据
+      getAllHotspots() {
+        try {
+          if (typeof localStorage === 'undefined') {
+            throw new Error('localStorage is not available');
+          }
+          
+          const data = localStorage.getItem(this.STORAGE_KEY);
+          return data ? JSON.parse(data) : [];
+        } catch (error) {
+          console.error('Failed to get all hotspots:', error);
+          return [];
+        }
+      },
+      
+      // 保存数据
+      saveData(data) {
+        try {
+          if (typeof localStorage === 'undefined') {
+            throw new Error('localStorage is not available');
+          }
+          
+          localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+        } catch (error) {
+          console.error('Failed to save data:', error);
+          throw error;
+        }
+      },
+      
+      // 根据ID获取热点
+      getHotspotById(id) {
+        const data = this.getAllHotspots();
+        return data.find(item => item.id === id);
+      },
+      
+      // 添加新热点
+      addHotspot(hotspot) {
+        try {
+          const data = this.getAllHotspots();
+          const newHotspot = {
+            id: this.generateId(),
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            ...hotspot
+          };
+          data.push(newHotspot);
+          this.saveData(data);
+          return newHotspot;
+        } catch (error) {
+          console.error('Failed to add hotspot:', error);
+          return null;
+        }
+      },
+      
+      // 更新热点
+      updateHotspot(id, updatedData) {
+        try {
+          const data = this.getAllHotspots();
+          const index = data.findIndex(item => item.id === id);
+          if (index !== -1) {
+            data[index] = {
+              ...data[index],
+              ...updatedData,
+              updatedAt: new Date().toISOString()
+            };
+            this.saveData(data);
+            return data[index];
+          }
+          return null;
+        } catch (error) {
+          console.error('Failed to update hotspot:', error);
+          return null;
+        }
+      },
+      
+      // 删除热点
+      deleteHotspot(id) {
+        try {
+          const data = this.getAllHotspots();
+          const newData = data.filter(item => item.id !== id);
+          this.saveData(newData);
+          return newData;
+        } catch (error) {
+          console.error('Failed to delete hotspot:', error);
+          return [];
+        }
+      },
+      
+      // 筛选热点
+      filterHotspots(filters = {}) {
+        try {
+          let data = this.getAllHotspots();
+          
+          // 按分类筛选
+          if (filters.category) {
+            data = data.filter(item => item.category === filters.category);
+          }
+          
+          // 按热门筛选
+          if (filters.isHot !== undefined) {
+            data = data.filter(item => item.isHot === filters.isHot);
+          }
+          
+          // 按搜索关键词筛选
+          if (filters.search) {
+            const searchTerm = filters.search.toLowerCase();
+            data = data.filter(item => 
+              item.title.toLowerCase().includes(searchTerm) || 
+              item.description.toLowerCase().includes(searchTerm) ||
+              item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+          }
+          
+          return data;
+        } catch (error) {
+          console.error('Failed to filter hotspots:', error);
+          return [];
+        }
+      },
+      
+      // 排序热点
+      sortHotspots(data, field = 'publishTime', order = 'desc') {
+        try {
+          return [...data].sort((a, b) => {
+            if (['likeCount', 'commentCount', 'favoriteCount', 'shareCount'].includes(field)) {
+              return order === 'desc' ? (b[field] || 0) - (a[field] || 0) : (a[field] || 0) - (b[field] || 0);
+            } else {
+              return order === 'desc' 
+                ? new Date(b[field]) - new Date(a[field]) 
+                : new Date(a[field]) - new Date(b[field]);
+            }
+          });
+        } catch (error) {
+          console.error('Failed to sort hotspots:', error);
+          return data;
+        }
+      },
+      
+      // 加载示例数据
+      loadSampleData() {
+        try {
+          const sampleData = [
+            {
+              id: this.generateId(),
+              title: "家纺不知道怎么拍视频？来，给你安排！",
+              description: "家纺店引流必备的5个拍摄技巧，让你的视频播放量轻松过万！",
+              likeCount: 3200,
+              commentCount: 450,
+              favoriteCount: 890,
+              shareCount: 210,
+              publishTime: "2023-07-20",
+              videoUrl: "https://v.douyin.com/HCdtyoQpuHs/",
+              coverImage: "https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/7ab19ed0913849d18ad7b4d641f77c58~tplv-a9rns2rl98-image.image",
+              category: "家纺类",
+              tags: ["家纺", "拍摄技巧", "引流"],
+              isHot: true,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            },
+            {
+              id: this.generateId(),
+              title: "现代简约风格家居搭配指南",
+              description: "如何用简单的家居搭配营造高级感，让你的家焕然一新！",
+              likeCount: 2100,
+              commentCount: 320,
+              favoriteCount: 580,
+              shareCount: 150,
+              publishTime: "2023-07-19",
+              videoUrl: "https://v.douyin.com/HCdtyoQpuHs/",
+              coverImage: "https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/f5d897b4034747819358d15757a4514a~tplv-a9rns2rl98-image.image",
+              category: "家居类",
+              tags: ["家居", "搭配", "简约风格"],
+              isHot: false,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            },
+            {
+              id: this.generateId(),
+              title: "枕朵记忆枕 - 舒适睡眠的秘密",
+              description: "枕朵记忆枕采用进口慢回弹材料，根据人体工学设计，有效缓解颈椎疲劳，让你拥有健康舒适的睡眠体验。",
+              likeCount: 4500,
+              commentCount: 720,
+              favoriteCount: 1200,
+              shareCount: 350,
+              publishTime: "2023-07-18",
+              videoUrl: "https://v.douyin.com/HCdtyoQpuHs/",
+              coverImage: "https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/7ab19ed0913849d18ad7b4d641f77c58~tplv-a9rns2rl98-image.image",
+              category: "家纺类",
+              tags: ["枕朵", "记忆枕", "健康睡眠"],
+              isHot: true,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            },
+            {
+              id: this.generateId(),
+              title: "小户型客厅家具摆放技巧",
+              description: "小户型客厅如何合理摆放家具，最大化利用空间？这些实用技巧让你的小空间也能显得宽敞舒适！",
+              likeCount: 1800,
+              commentCount: 290,
+              favoriteCount: 520,
+              shareCount: 130,
+              publishTime: "2023-07-17",
+              videoUrl: "https://v.douyin.com/HCdtyoQpuHs/",
+              coverImage: "https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/f5d897b4034747819358d15757a4514a~tplv-a9rns2rl98-image.image",
+              category: "家居类",
+              tags: ["小户型", "家具摆放", "空间利用"],
+              isHot: false,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            }
+          ];
+          
+          this.saveData(sampleData);
+          return true;
+        } catch (error) {
+          console.error('Failed to load sample data:', error);
+          return false;
+        }
+      },
+      
+      // 清除所有数据
+      clearAllData() {
+        try {
+          if (typeof localStorage === 'undefined') {
+            throw new Error('localStorage is not available');
+          }
+          
+          localStorage.removeItem(this.STORAGE_KEY);
+          return true;
+        } catch (error) {
+          console.error('Failed to clear data:', error);
+          return false;
+        }
+      },
+      
+      // 检查localStorage状态
+      checkStorageStatus() {
+        try {
+          if (typeof localStorage === 'undefined') {
+            return {
+              available: false,
+              message: 'localStorage不可用'
+            };
+          }
+          
+          // 测试localStorage是否正常工作
+          const testKey = 'hotspot_manager_test';
+          localStorage.setItem(testKey, 'test_value');
+          const testValue = localStorage.getItem(testKey);
+          localStorage.removeItem(testKey);
+          
+          if (testValue !== 'test_value') {
+            return {
+              available: false,
+              message: 'localStorage读写失败'
+            };
+          }
+          
+          return {
+            available: true,
+            message: 'localStorage正常'
+          };
+        } catch (error) {
+          return {
+            available: false,
+            message: `localStorage错误: ${error.message}`
+          };
+        }
+      },
+      
+      // 获取数据统计
+      getStatistics() {
+        try {
+          const data = this.getAllHotspots();
+          
+          return {
+            total: data.length,
+            homeTextile: data.filter(item => item.category === '家纺类').length,
+            homeDecor: data.filter(item => item.category === '家居类').length,
+            hotItems: data.filter(item => item.isHot).length
+          };
+        } catch (error) {
+          console.error('Failed to get statistics:', error);
+          return {
+            total: 0,
+            homeTextile: 0,
+            homeDecor: 0,
+            hotItems: 0
+          };
+        }
+      }
+    };
+  </script>
+
+  <!-- 修复后的热点前台展示脚本 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 初始化数据
+      if (typeof HotspotManager === 'undefined') {
+        console.error('HotspotManager not found');
+        showErrorState('加载失败：缺少必要的脚本文件');
+        return;
+      }
+      
+      try {
+        HotspotManager.init();
+      } catch (error) {
+        console.error('Failed to initialize HotspotManager:', error);
+        showErrorState('数据初始化失败: ' + error.message);
+        return;
+      }
+      
+      // 获取DOM元素
+      const hotspotList = document.getElementById('hotspotList');
+      const categoryFilter = document.getElementById('categoryFilter');
+      const sortBy = document.getElementById('sortBy');
+      const emptyState = document.getElementById('emptyState');
+      const loadingState = document.getElementById('loadingState');
+      const errorState = document.getElementById('errorState');
+      const errorMessage = document.getElementById('errorMessage');
+      const retryBtn = document.getElementById('retryBtn');
+      const totalCountElement = document.getElementById('totalCount');
+      
+      // 检查必要的DOM元素
+      if (!hotspotList || !loadingState || !emptyState || !errorState) {
+        console.error('Critical DOM elements not found');
+        alert('页面结构异常，请刷新页面重试');
+        return;
+      }
+      
+      // 移动端菜单切换
+      document.getElementById('menu-toggle').addEventListener('click', function() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+      });
+      
+      // 显示错误状态
+      function showErrorState(message) {
+        // 隐藏加载状态
+        if (loadingState) {
+          loadingState.classList.add('hidden');
+        }
+        
+        // 隐藏热点列表
+        if (hotspotList) {
+          hotspotList.classList.add('hidden');
+        }
+        
+        // 隐藏空状态
+        if (emptyState) {
+          emptyState.classList.add('hidden');
+        }
+        
+        // 显示错误状态
+        if (errorState) {
+          errorState.classList.remove('hidden');
+        }
+        
+        // 设置错误消息
+        if (errorMessage) {
+          errorMessage.textContent = message || '未知错误';
+        }
+      }
+      
+      // 渲染热点列表
+      function renderHotspotList() {
+        try {
+          // 显示加载状态
+          if (loadingState) {
+            loadingState.classList.remove('hidden');
+          }
+          if (hotspotList) {
+            hotspotList.innerHTML = '';
+          }
+          if (emptyState) {
+            emptyState.classList.add('hidden');
+          }
+          if (errorState) {
+            errorState.classList.add('hidden');
+          }
+          
+          // 获取筛选和排序条件
+          const category = categoryFilter ? categoryFilter.value : '';
+          const sortField = sortBy ? sortBy.value : 'publishTime';
+          const sortOrder = 'desc';
+          
+          // 获取并筛选数据
+          let data = HotspotManager.getAllHotspots();
+          
+          // 应用分类筛选
+          if (category) {
+            data = HotspotManager.filterHotspots({ category });
+          }
+          
+          // 应用排序
+          data = HotspotManager.sortHotspots(data, sortField, sortOrder);
+          
+          // 模拟加载延迟
+          setTimeout(() => {
+            try {
+              // 隐藏加载状态
+              if (loadingState) {
+                loadingState.classList.add('hidden');
+              }
+              
+              // 更新总计数
+              if (totalCountElement) {
+                totalCountElement.textContent = data.length;
+              }
+              
+              // 显示空状态或数据列表
+              if (data.length === 0) {
+                if (emptyState) {
+                  emptyState.classList.remove('hidden');
+                }
+                if (hotspotList) {
+                  hotspotList.classList.add('hidden');
+                }
+              } else {
+                if (emptyState) {
+                  emptyState.classList.add('hidden');
+                }
+                if (hotspotList) {
+                  hotspotList.classList.remove('hidden');
+                }
+                
+                // 渲染数据
+                if (hotspotList) {
+                  data.forEach(hotspot => {
+                    const item = createHotspotItem(hotspot);
+                    hotspotList.appendChild(item);
+                  });
+                  
+                  // 添加交互事件
+                  addInteractionEvents();
+                }
+              }
+              
+              // 更新统计数据
+              updateStatistics();
+            } catch (error) {
+              console.error('Error rendering hotspot list:', error);
+              showErrorState('渲染列表时出错: ' + error.message);
+            }
+          }, 500);
+        } catch (error) {
+          console.error('Error in renderHotspotList function:', error);
+          showErrorState('加载数据时出错: ' + error.message);
+          // 隐藏加载状态
+          if (loadingState) {
+            loadingState.classList.add('hidden');
+          }
+        }
+      }
+      
+      // 创建热点项
+      function createHotspotItem(hotspot) {
+        const item = document.createElement('div');
+        item.className = 'group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100';
+        item.setAttribute('data-id', hotspot.id);
+        
+        // 格式化日期
+        const publishDate = new Date(hotspot.publishTime).toLocaleDateString('zh-CN');
+        
+        // 获取统计数据
+        const likeCount = hotspot.likeCount || 0;
+        const commentCount = hotspot.commentCount || 0;
+        const favoriteCount = hotspot.favoriteCount || 0;
+        const shareCount = hotspot.shareCount || 0;
+        
+        // 生成标签HTML
+        const tagsHtml = hotspot.tags && hotspot.tags.length > 0 
+          ? hotspot.tags.slice(0, 5).map(tag => 
+              `<span class="inline-block px-2 py-0.5 text-xs rounded-full bg-gray-100 text-gray-600 mr-1 mb-1">#${tag}</span>`
+            ).join('')
+          : '';
+        
+        item.innerHTML = `
+          <div class="flex flex-col md:flex-row">
+            <!-- 封面图片 -->
+            <div class="relative md:w-1/4 lg:w-1/5 pb-[177.78%] md:pb-0 md:h-auto overflow-hidden rounded-l-lg">
+              <img src="${hotspot.coverImage || 'https://via.placeholder.com/360x640'}" alt="${hotspot.title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              ${hotspot.isHot ? '<span class="absolute top-2 left-2 bg-douyin text-white text-xs px-2 py-1 rounded-full flex items-center shadow-sm"><i class="fa fa-fire mr-1"></i> 热门</span>' : ''}
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="p-5 md:w-3/4 lg:w-4/5 flex flex-col">
+              <!-- 标题和描述 -->
+              <div class="mb-4">
+                <h3 class="font-bold text-gray-900 mb-2 text-lg md:text-xl">${hotspot.title}</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">${hotspot.description || '暂无描述'}</p>
+              </div>
+              
+              <!-- 互动数据 -->
+              <div class="flex items-center space-x-4 mb-3">
+                <span class="flex items-center text-gray-600 text-sm"><i class="fa fa-heart text-douyin mr-1"></i> ${formatNumber(likeCount)}</span>
+                <span class="flex items-center text-gray-600 text-sm"><i class="fa fa-comment text-gray-500 mr-1"></i> ${formatNumber(commentCount)}</span>
+                <span class="flex items-center text-gray-600 text-sm"><i class="fa fa-star text-yellow-500 mr-1"></i> ${formatNumber(favoriteCount)}</span>
+                <span class="flex items-center text-gray-600 text-sm"><i class="fa fa-share text-blue-500 mr-1"></i> ${formatNumber(shareCount)}</span>
+              </div>
+              
+              <!-- 标签 -->
+              <div class="flex flex-wrap mb-2">
+                ${tagsHtml}
+                ${hotspot.tags && hotspot.tags.length > 5 ? `<span class="inline-block px-2 py-0.5 text-xs rounded-full bg-gray-100 text-gray-600 mr-1 mb-1">+${hotspot.tags.length - 5}</span>` : ''}
+              </div>
+              
+              <!-- 发布日期 -->
+              <div class="text-xs text-gray-500 mb-3 flex items-center">
+                <i class="fa fa-calendar-o mr-1"></i> 发布日期: ${publishDate}
+              </div>
+              
+              <!-- 操作按钮 -->
+              <div class="flex flex-wrap gap-2 mt-auto">
+                <button class="extract-text-btn flex-1 min-w-[120px] bg-blue-50 text-blue-600 px-3 py-2 rounded-md hover:bg-blue-100 transition-all text-sm flex items-center justify-center">
+                  <i class="fa fa-file-text-o mr-1"></i> 提取内容
+                </button>
+                <button class="copy-link-btn flex-1 min-w-[120px] bg-green-50 text-green-600 px-3 py-2 rounded-md hover:bg-green-100 transition-all text-sm flex items-center justify-center">
+                  <i class="fa fa-link mr-1"></i> 复制链接
+                </button>
+                <a href="${hotspot.videoUrl || '#'}" target="_blank" class="flex-1 min-w-[120px] bg-douyin bg-opacity-10 text-douyin px-3 py-2 rounded-md hover:bg-opacity-20 transition-all text-sm flex items-center justify-center">
+                  <i class="fa fa-external-link mr-1"></i> 查看视频
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        return item;
+      }
+      
+      // 格式化数字
+      function formatNumber(num) {
+        if (num >= 10000) {
+          return (num / 10000).toFixed(1) + '万';
+        }
+        return num.toString();
+      }
+      
+      // 添加交互事件
+      function addInteractionEvents() {
+        // 提取内容功能
+        document.querySelectorAll('.extract-text-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const hotspotId = this.closest('[data-id]').getAttribute('data-id');
+            const hotspot = HotspotManager.getHotspotById(hotspotId);
+            
+            if (hotspot) {
+              // 创建提取的内容（仅标题+视频文案）
+              let extractedText = `${hotspot.title}\n\n${hotspot.videoCopy || '暂无视频文案'}`;
+              
+              // 复制到剪贴板
+              copyToClipboard(extractedText);
+              showToast('内容已复制到剪贴板');
+            }
+          });
+        });
+        
+        // 复制链接功能
+        document.querySelectorAll('.copy-link-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const hotspotId = this.closest('[data-id]').getAttribute('data-id');
+            const hotspot = HotspotManager.getHotspotById(hotspotId);
+            
+            if (hotspot && hotspot.videoUrl) {
+              copyToClipboard(hotspot.videoUrl);
+              showToast('链接已复制到剪贴板');
+            } else {
+              showToast('未找到视频链接', 'error');
+            }
+          });
+        });
+      }
+      
+      // 复制到剪贴板
+      function copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      
+      // 显示提示
+      function showToast(message) {
+        // 检查是否已存在提示元素
+        let toast = document.getElementById('toastNotification');
+        
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'toastNotification';
+          toast.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-md shadow-lg z-50 opacity-0 transition-opacity duration-300';
+          document.body.appendChild(toast);
+        }
+        
+        toast.textContent = message;
+        
+        // 显示提示
+        toast.classList.remove('opacity-0');
+        toast.classList.add('opacity-100');
+        
+        // 3秒后隐藏
+        setTimeout(() => {
+          toast.classList.remove('opacity-100');
+          toast.classList.add('opacity-0');
+        }, 3000);
+      }
+      
+      // 更新统计数据
+      function updateStatistics() {
+        const stats = HotspotManager.getStatistics();
+        
+        document.getElementById('totalItems').textContent = stats.total;
+        document.getElementById('homeTextileItems').textContent = stats.homeTextile;
+        document.getElementById('homeDecorItems').textContent = stats.homeDecor;
+        document.getElementById('hotItems').textContent = stats.hotItems;
+      }
+      
+      // 检查localStorage状态
+      function checkStorageStatus() {
+        const status = HotspotManager.checkStorageStatus();
+        const statusElement = document.getElementById('storageStatus');
+        
+        if (statusElement) {
+          if (status.available) {
+            statusElement.innerHTML = '<span class="text-green-600"><i class="fa fa-check-circle mr-1"></i> localStorage正常</span>';
+          } else {
+            statusElement.innerHTML = `<span class="text-red-600"><i class="fa fa-exclamation-circle mr-1"></i> ${status.message}</span>`;
+          }
+        }
+        
+        return status.available;
+      }
+      
+      // 加载示例数据
+      document.getElementById('loadSampleData').addEventListener('click', function() {
+        const success = HotspotManager.loadSampleData();
+        if (success) {
+          showToast('示例数据加载成功');
+          renderHotspotList();
+        } else {
+          showToast('加载示例数据失败');
+        }
+      });
+      
+      // 清除数据
+      document.getElementById('clearData').addEventListener('click', function() {
+        if (confirm('确定要清除所有数据吗？')) {
+          const success = HotspotManager.clearAllData();
+          if (success) {
+            showToast('数据已清除');
+            renderHotspotList();
+          } else {
+            showToast('清除数据失败');
+          }
+        }
+      });
+      
+      // 检查storage状态
+      document.getElementById('checkStorage').addEventListener('click', checkStorageStatus);
+      
+      // 重试按钮
+      if (retryBtn) {
+        retryBtn.addEventListener('click', renderHotspotList);
+      }
+      
+      // 筛选和排序事件
+      if (categoryFilter) {
+        categoryFilter.addEventListener('change', renderHotspotList);
+      }
+      
+      if (sortBy) {
+        sortBy.addEventListener('change', renderHotspotList);
+      }
+      
+      // 初始化检查
+      checkStorageStatus();
+      
+      // 初始化渲染
+      renderHotspotList();
+    });
+  </script>
+</body>
+</html>
