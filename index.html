@@ -3,446 +3,361 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>枕朵素材下载中心</title>
+  <title>新媒体运营中心</title>
+  <!-- Tailwind CSS v3 -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  
-  <!-- 配置Tailwind -->
+  <!-- 统一的 Tailwind 配置 -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#6B9BCC',
-            secondary: '#E6EEF7',
+            primary: '#3D5A80',
+            secondary: '#6B7280',
+            light: '#F3F4F6',
+            dark: '#1F2937',
+            douyin: '#FE2C55'
           },
-        },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
       }
     }
   </script>
-  
   <style type="text/tailwindcss">
     @layer utilities {
-      .btn-hover {
-        transition: all 0.2s ease;
+      .content-auto {
+        content-visibility: auto;
       }
-      .btn-hover:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(107, 155, 204, 0.2);
+      .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
       }
-      .img-loading {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-      }
-      @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
     }
   </style>
-  
-  <!-- 预加载关键图片（LOGO和封面图） -->
-  <link rel="preload" href="https://github.com/cjw97135336-arch/ZDstore-video-share/blob/main/logo1.png?raw=true" as="image" type="image/jpeg">
-  <link rel="preload" href="https://github.com/cjw97135336-arch/ZDstore-video-share/blob/main/5.png?raw=true" as="image" type="image/png">
 </head>
-
-<body class="bg-gray-50 min-h-screen">
-  <div class="max-w-md mx-auto p-6 py-12">
-    <!-- 品牌区 -->
-    <div class="text-center mb-8">
-      <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-primary/20">
-        <!-- LOGO使用延迟加载+占位符 -->
-        <img 
-          data-src="https://github.com/cjw97135336-arch/ZDstore-video-share/blob/main/logo1.png?raw=true" 
-          alt="枕朵LOGO" 
-          class="w-20 h-20 object-contain img-loading"
-          loading="lazy"
-          onerror="this.src='https://github.com/cjw97135336-arch/ZDstore-video-share/blob/main/logo1.png'; this.alt='枕朵LOGO';">
+<body class="bg-gray-50 text-gray-900">
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <!-- 移动端导航 -->
+      <div class="md:hidden flex justify-between items-center py-3">
+        <h1 class="text-xl font-bold text-primary">枕朵新媒体赋能平台</h1>
+        <button id="menu-toggle" class="text-gray-600 hover:text-primary focus:outline-none">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
       </div>
-      <h1 class="text-2xl font-bold text-gray-800">枕朵新媒体运营中心</h1>
-      <p class="text-gray-500 mt-1">佛山记忆枕体验中心</p>
-    </div>
-
-    <!-- 主图预览 -->
-    <div class="relative rounded-xl overflow-hidden mb-8 aspect-video bg-gray-100 shadow-md">
-      <!-- 封面图使用延迟加载+占位符 -->
-      <img 
-        data-src="https://github.com/cjw97135336-arch/ZDstore-video-share/blob/main/5.png?raw=true" 
-        alt="枕朵记忆枕产品展示" 
-        class="w-full h-full object-cover img-loading"
-        loading="lazy">
-      <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-        <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-          <i class="fa fa-play text-white text-xl"></i>
+      
+      <!-- 移动端菜单 -->
+      <div id="mobile-menu" class="md:hidden hidden pb-3">
+        <div class="grid grid-cols-3 gap-2">
+          <a href="index.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-home text-xl mb-1"></i>
+            <span class="text-sm">首页</span>
+          </a>
+          <a href="about.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-info-circle text-xl mb-1"></i>
+            <span class="text-sm">枕朵介绍</span>
+          </a>
+          <a href="hotspot.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-fire text-xl mb-1"></i>
+            <span class="text-sm">视频热点榜</span>
+          </a>
+          <a href="materials.html" class="flex flex-col items-center justify-center py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-picture-o text-xl mb-1"></i>
+            <span class="text-sm">素材资源</span>
+          </a>
+          <a href="admin.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-cog text-xl mb-1"></i>
+            <span class="text-sm">管理中心</span>
+          </a>
         </div>
       </div>
-    </div>
-
-    <!-- 素材下载容器 -->
-    <div class="bg-white rounded-xl p-5 shadow-sm mb-6">
-      <!-- 1. 宣传片分类 -->
-      <div class="mb-8">
-        <h3 class="text-xl font-medium text-primary mb-3 flex items-center">
-          <i class="fa fa-film mr-2"></i>宣传片
-        </h3>
-        
-        <!-- 文案区 -->
-        <div class="border border-gray-100 rounded-lg p-3 bg-gray-50 mb-4">
-          <p class="text-gray-800 text-sm mb-3" id="copy-text-1">
-            【舒适推荐】这家佛山枕朵记忆枕体验中心的新品太赞了！枕芯柔软又有支撑，睡感超棒～ 打卡还有惊喜哦～ #枕朵 #枕头推荐 #舒适睡眠 #周末去哪儿
-          </p>
-          <div class="flex gap-2">
-            <button class="copy-btn btn-hover px-3 py-1.5 bg-primary/10 text-primary text-sm rounded flex items-center" data-target="1">
-              <i class="fa fa-copy mr-1"></i>复制文案
-            </button>
-            <button class="random-btn btn-hover px-3 py-1.5 bg-secondary text-primary text-sm rounded flex items-center" data-type="1">
-              <i class="fa fa-random mr-1"></i>随机文案
-            </button>
+      
+      <!-- 桌面端导航 -->
+      <div class="hidden md:flex justify-between items-center py-4">
+        <div class="flex items-center space-x-2">
+          <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-10 w-10">
+          <div>
+            <span class="text-xl font-bold text-primary">枕朵新媒体运营中心</span>
           </div>
         </div>
         
-        <!-- 下载按钮组（6个） -->
-        <div class="grid grid-cols-1 gap-3">
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-video-camera mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">品牌宣传片（15s）</div>
-                <div class="text-xs text-gray-500">MP4 · 12MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
+        <div class="flex items-center space-x-8">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-home mr-1"></i> 首页
           </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-video-camera mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">产品功能展示（30s）</div>
-                <div class="text-xs text-gray-500">MP4 · 25MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
+          <a href="about.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-info-circle mr-1"></i> 枕朵介绍
           </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-image mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">宣传片封面图</div>
-                <div class="text-xs text-gray-500">PNG · 2MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
+          <a href="hotspot.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-fire mr-1"></i> 视频热点榜
           </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-file-text mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">宣传片脚本</div>
-                <div class="text-xs text-gray-500">PDF · 1MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
+          <a href="materials.html" class="text-primary hover:text-primary font-medium transition-all">
+            <i class="fa fa-picture-o mr-1"></i> 素材资源
           </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-music mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">宣传片配乐</div>
-                <div class="text-xs text-gray-500">MP3 · 3MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-compress mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">短视频版（6s）</div>
-                <div class="text-xs text-gray-500">MP4 · 8MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
+          <a href="admin.html" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-cog mr-1"></i> 管理中心
           </a>
         </div>
       </div>
+    </div>
+  </nav>
 
-      <!-- 2. 门店素材分类 -->
-      <div class="mb-8">
-        <h3 class="text-xl font-medium text-primary mb-3 flex items-center">
-          <i class="fa fa-shopping-bag mr-2"></i>门店素材
-        </h3>
-        
-        <!-- 文案区 -->
-        <div class="border border-gray-100 rounded-lg p-3 bg-gray-50 mb-4">
-          <p class="text-gray-800 text-sm mb-3" id="copy-text-2">
-            佛山枕朵记忆枕体验中心太好逛了！现场能试睡不同款记忆枕，店员还会讲解护颈知识，逛累了还有免费茶水～ 周末不知道去哪就来这！#枕朵体验店 #佛山探店 #周末去哪儿
-          </p>
-          <div class="flex gap-2">
-            <button class="copy-btn btn-hover px-3 py-1.5 bg-primary/10 text-primary text-sm rounded flex items-center" data-target="2">
-              <i class="fa fa-copy mr-1"></i>复制文案
-            </button>
-            <button class="random-btn btn-hover px-3 py-1.5 bg-secondary text-primary text-sm rounded flex items-center" data-type="2">
-              <i class="fa fa-random mr-1"></i>随机文案
-            </button>
+  <!-- 主内容区 -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- 轮播图区域 -->
+    <div class="relative mb-8 rounded-lg overflow-hidden shadow-lg">
+      <div id="carousel" class="relative">
+        <div class="carousel-inner flex transition-transform duration-500">
+          <div class="carousel-item w-full flex-shrink-0">
+            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/d665bcb490c14c89ada1bceadc6f7784.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021160636E8125150C4C9C9A96300&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761638796&x-signature=JT6o5pWg99DKuokr6G8dlRqSgnM%3D" alt="轮播图1" class="w-full h-auto md:h-96 object-contain md:object-cover">
+          </div>
+          <div class="carousel-item w-full flex-shrink-0">
+            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/8d40c8afb29b447abe3b7672bdf06576.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021160636E8125150C4C9C9A96300&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761638796&x-signature=4gfUL5V8semhzD1oO%2FTzcYLejqs%3D" alt="轮播图2" class="w-full h-auto md:h-96 object-contain md:object-cover">
+          </div>
+          <div class="carousel-item w-full flex-shrink-0">
+            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/e49b55cfbf42418eb06b9ca039d12d42.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021160636E8125150C4C9C9A96300&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761638796&x-signature=YybAC5MGQtfXBw419OaW5q2VWbU%3D" alt="轮播图3" class="w-full h-auto md:h-96 object-contain md:object-cover">
           </div>
         </div>
         
-        <!-- 下载按钮组（6个） -->
-        <div class="grid grid-cols-1 gap-3">
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-image mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">门店环境图集</div>
-                <div class="text-xs text-gray-500">ZIP · 45MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-play-circle mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">门店体验视频</div>
-                <div class="text-xs text-gray-500">MP4 · 32MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-user mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">店员讲解素材</div>
-                <div class="text-xs text-gray-500">MP4 · 28MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-map-marker mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">门店地址卡片</div>
-                <div class="text-xs text-gray-500">PNG · 1MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-calendar mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">活动海报模板</div>
-                <div class="text-xs text-gray-500">PSD · 15MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-comment mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">客户反馈合集</div>
-                <div class="text-xs text-gray-500">MP4 · 22MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
+        <!-- 轮播图控制按钮 -->
+        <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all carousel-prev">
+          <i class="fa fa-angle-left text-xl"></i>
+        </button>
+        <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all carousel-next">
+          <i class="fa fa-angle-right text-xl"></i>
+        </button>
+        
+        <!-- 轮播图指示器 -->
+        <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 carousel-indicators">
+          <button class="w-2 h-2 rounded-full bg-white opacity-50 hover:opacity-100 transition-all carousel-indicator active" data-index="0"></button>
+          <button class="w-2 h-2 rounded-full bg-white opacity-50 hover:opacity-100 transition-all carousel-indicator" data-index="1"></button>
+          <button class="w-2 h-2 rounded-full bg-white opacity-50 hover:opacity-100 transition-all carousel-indicator" data-index="2"></button>
         </div>
       </div>
-
-      <!-- 3. 口播素材分类 -->
-      <div>
-        <h3 class="text-xl font-medium text-primary mb-3 flex items-center">
-          <i class="fa fa-microphone mr-2"></i>口播素材
-        </h3>
+    </div>
+    
+    <!-- 栏目导航区域 -->
+    <div class="mb-8">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <!-- 枕朵介绍 -->
+        <a href="about.html" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-3">
+            <i class="fa fa-info-circle text-primary text-xl"></i>
+          </div>
+          <span class="text-gray-800 font-medium">枕朵介绍</span>
+        </a>
         
-        <!-- 文案区 -->
-        <div class="border border-gray-100 rounded-lg p-3 bg-gray-50 mb-4">
-          <p class="text-gray-800 text-sm mb-3" id="copy-text-3">
-            每天起床脖子酸？试试枕朵记忆枕！慢回弹材质能托住颈椎，不管是仰睡还是侧睡都超贴合～ 现在到佛山体验中心试睡，还能领颈椎护理手册！#枕朵 #护颈枕头 #改善睡眠
-          </p>
-          <div class="flex gap-2">
-            <button class="copy-btn btn-hover px-3 py-1.5 bg-primary/10 text-primary text-sm rounded flex items-center" data-target="3">
-              <i class="fa fa-copy mr-1"></i>复制文案
-            </button>
-            <button class="random-btn btn-hover px-3 py-1.5 bg-secondary text-primary text-sm rounded flex items-center" data-type="3">
-              <i class="fa fa-random mr-1"></i>随机文案
-            </button>
+        <!-- 视频热点 -->
+        <a href="hotspot.html" class="bg-white rounded-lg:bg-primary/5 rounded rounded-lg shadow-md p-4 hover:shadow-lg transition-all text-center flex flex flex-col items-center">
+          <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full-full flex flex items-center justify-center mb-3">
+            <i class="fa fa-fire text-primary text-primary"></i>
+          </div>
+          <span class="text-gray-800 font-medium">视频热点</span>
+        </a>
+        
+        <!-- 碰一碰 -->
+        <a href="#" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 bg-blue-100 rounded-full-full flex items-center justify-center mb-3">
+            <i class="fa fa-handshake-o text-blue-600 text-xl"></i>
+          </div>
+          <span class="text-gray-800 font-medium">碰一碰</span>
+        </a>
+        
+        <!-- 最新动态 -->
+        <a href="#" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
+            <i class="fa fa-newspaper-o text-green-600 text-xl"></i>
+          </div>
+          <span class="text-gray-800 font-medium">最新动态</span>
+        </a>
+        
+        <!-- 素材资源 -->
+        <a href="#" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-3">
+            <i class="fa fa-picture-o text-yellow-600 text-xl"></i>
+          </div>
+          <span class="text-gray-800 font-medium">素材资源</span>
+        </a>
+        
+        <!-- 进阶培训 -->
+        <a href="#" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-3">
+            <i class="fa fa-graduation-cap text-purple-600 text-xl"></i>
+          </div>
+          <span class="text-gray-800 font-medium">进阶培训</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- 每日素材区域 -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold text-center mb-6">每日素材</h2>
+      <div class="grid grid-cols-1 gap-6">
+        <!-- 今日朋友圈 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all">
+          <div class="flex flex-col md:flex-row">
+            <div class="relative md:w-1/3">
+              <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/f5d897b4034747819358d15757a4514a~tplv-a9rns2rl98-image.image" alt="今日朋友圈" class="w-full h-48 md:h-full object-cover">
+              <div class="absolute top-4 right-4 bg-white text-primary px-3 py-1 rounded-full text-sm font-medium">
+                今日朋友圈
+              </div>
+            </div>
+            <div class="p-4 md:p-6 md:w-2/3">
+              <h3 class="text-lg font-bold mb-2">家纺店引流文案素材</h3>
+              <p class="text-gray-600 mb-4 line-clamp-2">精选10条家纺店引流朋友圈文案，提升客户转化率</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">更新于: 2023-07-21</span>
+                <a href="#" class="text-primary hover:text-primary-dark transition-all flex items-center">
+                  查看详情 <i class="fa fa-angle-right ml-1"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
-        <!-- 下载按钮组（6个） -->
-        <div class="grid grid-cols-1 gap-3">
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-file-text mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">口播脚本合集</div>
-                <div class="text-xs text-gray-500">PDF · 2MB</div>
+        <!-- 每日热点 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all">
+          <div class="flex flex-col md:flex-row">
+            <div class="relative md:w-1/3">
+              <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/7ab19ed0913849d18ad7b4d641f77c58~tplv-a9rns2rl98-image.image" alt="每日热点" class="w-full h-48 md:h-full object-cover">
+              <div class="absolute top-4 right-4 bg-douyin text-white px-3 py-1 rounded-full text-sm font-medium">
+                每日热点
               </div>
             </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-volume-up mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">配音音频素材</div>
-                <div class="text-xs text-gray-500">MP3 · 8MB</div>
+            <div class="p-4 md:p-6 md:w-2/3">
+              <h3 class="text-lg font-bold mb-2">抖音热门话题</h3>
+              <p class="text-gray-600 mb-4 line-clamp-2">精选10个家纺、家具店相关热门抖音热门门话题，播放量超10万</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">更新于: 2023-07-21</span>
+                <a href="hotspot.html" class="text-douyin hover:text-opacity-80 transition-all flex items-center">
+                  查看详情 <i class="fa fa-angle-right ml-1"></i>
+                </a>
               </div>
             </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-microphone mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">口播教学视频</div>
-                <div class="text-xs text-gray-500">MP4 · 18MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-clock-o mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">15秒快口播</div>
-                <div class="text-xs text-gray-500">MP3 · 1MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-music mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">口播背景音</div>
-                <div class="text-xs text-gray-500">MP3 · 4MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
-            <div class="flex items-center">
-              <i class="fa fa-comments mr-3 text-lg"></i>
-              <div>
-                <div class="font-medium">对话式口播</div>
-                <div class="text-xs text-gray-500">MP4 · 25MB</div>
-              </div>
-            </div>
-            <i class="fa fa-download"></i>
-          </a>
+          </div>
         </div>
       </div>
-
-      <!-- 提取码提示 -->
-      <div class="mt-6 p-3 bg-gray-50 rounded-lg">
-        <p class="text-sm text-gray-600 flex items-center">
-          <i class="fa fa-key text-primary mr-2"></i>
-          素材通用提取码：<span class="font-medium ml-1">b6h73a</span>
-        </p>
-      </div>
     </div>
+    
 
-    <!-- 抖音发布按钮 -->
-    <button id="douyin-btn" class="w-full bg-primary text-white py-3 rounded-xl font-medium flex items-center justify-center shadow-md btn-hover">
-      <i class="fa fa-share-alt mr-2"></i>一键发布到抖音
-    </button>
-
-    <!-- 操作指引 -->
-    <div class="text-center text-gray-500 text-xs mt-6">
-      <p>若下载报错，可复制链接到手机浏览器打开</p>
-      <p class="mt-1">发布素材后向店员出示，可领取惊喜福利</p>
-    </div>
   </div>
 
-  <!-- 提示弹窗 -->
-  <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-full shadow-lg flex items-center z-50 hidden">
-    <i id="toast-icon" class="fa fa-check-circle mr-2 text-green-400"></i>
-    <span id="toast-text">操作成功</span>
-  </div>
+  <!-- 页脚 -->
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <div class="flex items-center space-x-2">
+            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-8 w-8">
+            <span class="text-lg font-bold text-primary">枕朵新媒体运营中心</span>
+          </div>
+          <p class="text-gray-500 text-sm mt-1">枕朵专业全域流量赋能家纺、家具店</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="text-gray-500 text-sm">© 2025 枕朵新媒体运营中心. 保留所有权利.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    // 1. 图片延迟加载初始化（解决加载顺序问题）
-    document.addEventListener('DOMContentLoaded', () => {
-      const lazyImages = document.querySelectorAll('img[data-src]');
-      lazyImages.forEach(img => {
-        img.src = img.dataset.src; // 页面加载完成后再加载图片
-        img.onload = () => img.classList.remove('img-loading'); // 加载完成后移除占位动画
-      });
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
     });
-
-    // 2. 三类素材的随机文案库
-    const randomTextLib = {
-      1: [
-        "佛山枕朵记忆枕新品宣传片来啦！慢回弹材质超舒服，托住颈椎一夜好眠，体验中心还有试睡活动～ #枕朵 #记忆枕 #舒适睡眠",
-        "谁懂啊！枕朵这款记忆枕睡一次就爱上！软而不塌支撑力超足，佛山体验中心能现场感受，快去打卡～ #枕朵推荐 #护颈枕头 #佛山好去处",
-        "枕朵记忆枕宣传片出炉！从材质到睡感都超用心，佛山本地朋友可以去体验中心试睡，不满意不要钱～ #枕朵体验 #好枕头推荐 #睡眠好物"
-      ],
-      2: [
-        "周末打卡佛山枕朵体验中心！店里有各种记忆枕可以试睡，还有店员教你怎么选适合自己的枕头，超贴心～ #枕朵门店 #佛山探店 #周末去哪儿",
-        "发现佛山宝藏店！枕朵记忆枕体验中心环境超舒服，试睡了半小时不想走，最后带了一款回家～ #枕朵体验店 #护颈好物 #佛山逛街",
-        "佛山人不知道的睡眠体验店！枕朵记忆枕体验中心能免费测颈椎，还能试睡不同款枕头，逛累了还有茶歇～ #枕朵 #佛山本地 #睡眠体验"
-      ],
-      3: [
-        "家人们！脖子酸的一定要试试枕朵记忆枕！慢回弹设计能贴合颈椎曲线，我用了一周脖子不酸了～ #枕朵 #护颈枕头 #改善睡眠",
-        "还在为选枕头发愁？枕朵记忆枕帮你解决！不管你是仰睡还是侧睡，都能找到适合的款，佛山有体验店哦～ #枕朵口播 #枕头推荐 #颈椎护理",
-        "每天睡不好？可能是枕头没选对！枕朵记忆枕根据人体工学设计，支撑颈椎超给力，现在到店试睡有优惠～ #枕朵 #好睡眠 #护颈好物"
-      ]
-    };
-
-    // 3. 显示提示弹窗
-    function showToast(text, isSuccess = true) {
-      const toast = document.getElementById('toast');
-      const toastText = document.getElementById('toast-text');
-      const toastIcon = document.getElementById('toast-icon');
+    
+    // 轮播图功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.getElementById('carousel');
+      const carouselInner = carousel.querySelector('.carousel-inner');
+      const carouselItems = carousel.querySelectorAll('.carousel-item');
+      const prevBtn = carousel.querySelector('.carousel-prev');
+      const nextBtn = carousel.querySelector('.carousel-next');
+      const indicators = carousel.querySelectorAll('.carousel-indicator');
       
-      toastText.textContent = text;
-      toastIcon.className = isSuccess ? "fa fa-check-circle mr-2 text-green-400" : "fa fa-exclamation-circle mr-2 text-yellow-400";
-      toast.classList.remove('hidden');
-      setTimeout(() => toast.classList.add('hidden'), 2000);
-    }
-
-    // 4. 复制文案功能
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = `copy-text-${btn.dataset.target}`;
-        const text = document.getElementById(targetId).textContent;
-        
-        navigator.clipboard.writeText(text)
-          .then(() => showToast('文案已复制'))
-          .catch(() => showToast('复制失败，请手动复制', false));
-      });
-    });
-
-    // 5. 随机文案功能
-    document.querySelectorAll('.random-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const type = btn.dataset.type;
-        const textList = randomTextLib[type];
-        const randomIndex = Math.floor(Math.random() * textList.length);
-        const targetId = `copy-text-${type}`;
-        
-        document.getElementById(targetId).textContent = textList[randomIndex];
-        showToast('文案已更新');
-      });
-    });
-
-    // 6. 抖音跳转功能
-    document.getElementById('douyin-btn').addEventListener('click', () => {
-      const defaultText = document.getElementById('copy-text-1').textContent;
-      const douyinUrl = `snssdk1128://create/video?title=${encodeURIComponent(defaultText)}`;
+      let currentIndex = 0;
+      const itemCount = carouselItems.length;
       
-      try {
-        window.location.href = douyinUrl;
-        setTimeout(() => showToast('若未跳转，请手动打开抖音', false), 1500);
-      } catch (err) {
-        showToast('请手动打开抖音上传素材', false);
+      // 设置轮播图宽度
+      function setItemWidth() {
+        const carouselWidth = carousel.offsetWidth;
+        carouselItems.forEach(item => {
+          item.style.width = carouselWidth + 'px';
+        });
+        moveToSlide(currentIndex);
       }
+      
+      // 移动到指定幻灯片
+      function moveToSlide(index) {
+        if (index < 0) index = itemCount - 1;
+        if (index >= itemCount) index = 0;
+        
+        currentIndex = index;
+        
+        // 移动轮播图
+        carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // 更新指示器状态
+        indicators.forEach((indicator, i) => {
+          if (i === currentIndex) {
+            indicator.classList.add('opacity-100');
+            indicator.classList.add('active');
+          } else {
+            indicator.classList.remove('opacity-100');
+            indicator.classList.remove('active');
+          }
+        });
+      }
+      
+      // 下一张幻灯片
+      function nextSlide() {
+        moveToSlide(currentIndex + 1);
+      }
+      
+      // 上一张幻灯片
+      function prevSlide() {
+        moveToSlide(currentIndex - 1);
+      }
+      
+      // 指示器点击事件
+      indicators.forEach((indicator, i) => {
+        indicator.addEventListener('click', () => {
+          moveToSlide(i);
+        });
+      });
+      
+      // 按钮点击事件
+      nextBtn.addEventListener('click', nextSlide);
+      prevBtn.addEventListener('click', prevSlide);
+      
+      // 窗口大小变化时重新设置宽度
+      window.addEventListener('resize', setItemWidth);
+      
+      // 初始化
+      setItemWidth();
+      
+      // 自动轮播
+      let autoplayInterval = setInterval(nextSlide, 10000);
+      
+      // 鼠标悬停时暂停自动轮播
+      carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+      });
+      
+      // 鼠标离开时恢复自动轮播
+      carousel.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(nextSlide, 10000);
+      });
     });
   </script>
 </body>

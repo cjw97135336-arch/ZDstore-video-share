@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文案选题 - 枕朵新媒体运营中心</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 统一的 Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3D5A80',
+            secondary: '#6B7280',
+            light: '#F3F4F6',
+            dark: '#1F2937',
+            douyin: '#FE2C55'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <!-- 移动端导航 -->
+      <div class="md:hidden flex justify-between items-center py-3">
+        <h1 class="text-xl font-bold text-primary">枕朵新媒体赋能平台</h1>
+        <button id="menu-toggle" class="text-gray-600 hover:text-primary focus:outline-none">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+      
+      <!-- 移动端菜单 -->
+      <div id="mobile-menu" class="md:hidden hidden pb-3">
+        <div class="grid grid-cols-3 gap-2">
+          <a href="index.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-home text-xl mb-1"></i>
+            <span class="text-sm">首页</span>
+          </a>
+          <a href="about.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-info-circle text-xl mb-1"></i>
+            <span class="text-sm">枕朵介绍</span>
+          </a>
+          <a href="hotspot.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-fire text-xl mb-1"></i>
+            <span class="text-sm">视频热点榜</span>
+          </a>
+          <a href="materials.html" class="flex flex-col items-center justify-center py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-picture-o text-xl mb-1"></i>
+            <span class="text-sm">文案选题</span>
+          </a>
+          <a href="admin.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-cog text-xl mb-1"></i>
+            <span class="text-sm">管理中心</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 桌面端导航 -->
+      <div class="hidden md:flex justify-between items-center py-4">
+        <div class="flex items-center space-x-2">
+          <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-10 w-10">
+          <div>
+            <span class="text-xl font-bold text-primary">枕朵新媒体运营中心</span>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-8">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-home mr-1"></i> 首页
+          </a>
+          <a href="about.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-info-circle mr-1"></i> 枕朵介绍
+          </a>
+          <a href="hotspot.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-fire mr-1"></i> 视频热点榜
+          </a>
+          <a href="materials.html" class="text-primary hover:text-primary font-medium transition-all">
+            <i class="fa fa-list-ul mr-1"></i> 文案选题
+          </a>
+          <a href="admin.html" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-cog mr-1"></i> 管理中心
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- 页面标题 -->
+    <div class="text-center mb-12">
+      <h1 class="text-3xl font-bold text-primary mb-2">文案选题</h1>
+      <p class="text-gray-600 max-w-2xl mx-auto">精选文案，助力打造爆款内容，提升品牌影响力</p>
+    </div>
+    
+    <!-- 栏目导航 -->
+    <div class="mb-8 overflow-x-auto">
+      <div class="flex space-x-4 min-w-max">
+        <button id="tab-ip" class="tab-btn active px-6 py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
+          <i class="fa fa-star mr-2"></i>打造IP内容
+        </button>
+        <button id="tab-hot" class="tab-btn px-6 py-3 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-all">
+          <i class="fa fa-fire mr-2"></i>热门话题
+        </button>
+        <button id="tab-emotion" class="tab-btn px-6 py-3 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-all">
+          <i class="fa fa-heart mr-2"></i>情感话题
+        </button>
+        <button id="tab-store" class="tab-btn px-6 py-3 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-all">
+          <i class="fa fa-shopping-bag mr-2"></i>探店话题
+        </button>
+      </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="tab-content">
+      <!-- 打造IP内容 -->
+      <div id="content-ip" class="tab-pane active">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 文案1 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-21</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【品牌故事】从0到1打造家纺品牌IP的秘诀</h3>
+            <p class="text-gray-600 mb-4">在当今竞争激烈的家纺市场，如何打造一个有辨识度的品牌IP？本文分享从品牌定位、视觉设计到内容创作的全方位策略，帮助家纺企业建立独特的品牌形象和忠实的粉丝群体。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案2 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-20</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【内容策略】家纺品牌IP的内容矩阵构建</h3>
+            <p class="text-gray-600 mb-4">一个成功的品牌IP需要多元化的内容支撑。本文详解如何构建涵盖产品故事、使用场景、用户见证等多维度的内容矩阵，让品牌IP更加立体丰满，增强用户粘性和品牌影响力。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案3 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-19</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【视觉设计】家纺品牌IP的视觉识别系统</h3>
+            <p class="text-gray-600 mb-4">视觉是品牌IP的第一印象。本文分享家纺品牌如何通过色彩、字体、图案等视觉元素构建独特的品牌识别系统，让消费者一眼就能认出你的品牌，提升品牌记忆度和辨识度。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案4 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-18</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【用户互动】家纺品牌IP的粉丝运营策略</h3>
+            <p class="text-gray-600 mb-4">粉丝是品牌IP的核心资产。本文详解如何通过互动活动、会员体系、私域运营等方式，增强粉丝粘性，培养品牌忠诚度，让粉丝成为品牌的传播者和消费者。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案5 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-17</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【跨界合作】家纺品牌IP的联名营销策略</h3>
+            <p class="text-gray-600 mb-4">跨界合作是提升品牌IP影响力的有效方式。本文分享家纺品牌如何选择合适的合作伙伴，设计有吸引力的联名产品，通过跨界合作扩大品牌受众，提升品牌调性。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案6 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-16</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【KOL合作】家纺品牌IP的达人营销之道</h3>
+            <p class="text-gray-600 mb-4">KOL是品牌IP传播的重要助力。本文详解如何选择与品牌调性相符的KOL，设计有效的合作方案，通过KOL的影响力扩大品牌IP的曝光度和影响力。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案7 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-15</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【短视频内容】家纺品牌IP的短视频创作指南</h3>
+            <p class="text-gray-600 mb-4">短视频是品牌IP传播的重要载体。本文分享家纺品牌如何创作有吸引力的短视频内容，包括产品展示、使用场景、创意剧情等多种形式，提升品牌IP的传播效果。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案8 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-14</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【直播带货】家纺品牌IP的直播营销策略</h3>
+            <p class="text-gray-600 mb-4">直播是品牌IP与消费者互动的重要方式。本文详解家纺品牌如何通过直播展示产品特点，与消费者实时互动，提升品牌IP的亲和力和转化率。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案9 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-13</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【节日营销】家纺品牌IP的节日借势策略</h3>
+            <p class="text-gray-600 mb-4">节日是品牌IP营销的重要节点。本文分享家纺品牌如何结合不同节日的特点，设计有针对性的营销活动和内容，提升品牌IP的曝光度和销售转化。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-all items items-center">
+                <i class="fa fa-refresh mr-2"></i>改写文案
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案10 -->
+          <div class="bg-white bg rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">IP打造</span>
+              <span class="text-gray-500 text-sm">2025-07-12</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【数据驱动】家纺品牌IP的内容优化策略</h3>
+            <p class="text-gray-600 mb-4">数据是优化品牌IP内容的重要依据。本文详解如何通过数据分析了解用户喜好，优化内容策略，提升品牌IP的传播效果和用户互动率。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 热门话题 -->
+      <div id="content-hot" class="tab-pane hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 文案1 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-21</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">#家纺 为什么 高颜值床品 如何火 家纺 高颜值床品 真的能 提升 睡眠 质量 吗？</h3>
+            <p class="text-gray-600 mb-4">最近#高颜值床品#话题在抖音上火爆，越来越 高颜值 的床品 真的 能 提升 睡眠 质量 吗？ 本文 从 色彩 心理学、 材质 选择、 卧室 布置 搭配 等 多个 角度 分析， 告诉你 如何 选择 既 好看 高颜值 又 舒适 的 床品， 让 你的 卧室 间 增添 一抹 亮色。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案2 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-20</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 极简 风 卧室 布置 # 一 张 床垫 打造 舒适 睡眠 空间</h3>
+            <p class="text-gray-600 mb-4">极简 风 卧室 布置 成为 新 趋势， 如何 用 最少 的 元素 打造 最 舒适 的 睡眠 空间？ 本文 分享 极简 风 卧室 布置 技巧， 从 床垫 选择 到 色彩 搭配， 让 你的 卧室 既 简约 又 舒适。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案3 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-19</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 智能 床垫 测评 # 科技 改变 睡眠 体验</h3>
+            <p class="text-gray-600 mb-4">智能 床垫 成为 家纺 市场 的 新 宠， 它们 真的 能 改善 睡眠 质量 吗？ 本文 对 市场 上 热门 的 智能 床垫 进行 全面 测评， 从 功能、 舒适度、 性价比 等 多个 维度 分析， 帮你 选择 最 适合 自己 的 智能 床垫。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案4 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-18</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 四季 床品 搭配 # 不同 季节 的 睡眠 解决方案</h3>
+            <p class="text-gray-600 mb-4">不同 季节 需要 不同 的 床品 搭配， 如何 根据 季节 变化 选择 合适 的 床品？ 本文 分享 四季 床品 搭配 技巧， 从 材质 选择 到 色彩 搭配， 让 你 四季 都 能 拥有 舒适 的 睡眠 体验。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案5 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-17</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 卧室 收纳 技巧 # 小 空间 也 能 有 大 收纳</h3>
+            <p class="text-gray-600 mb-4">卧室 收纳 是 很多 人 的 困扰， 如何 在 有限 的 空间 内 实现 最大 化 收纳？ 本文 分享 实用 的 卧室 收纳 技巧， 从 床底 收纳 到 衣柜 整理， 让 你 的 卧室 既 整洁 又 舒适。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案6 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-16</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 儿童 房 布置 # 安全 又 温馨 的 儿童 睡眠 空间</h3>
+            <p class="text-gray-600 mb-4">儿童 房 布置 需要 特别 注意 安全 和 舒适性， 如何 打造 一个 既 安全 又 温馨 的 儿童 睡眠 空间？ 本文 分享 儿童 房 布置 技巧， 从 床垫 选择 到 色彩 搭配， 让 孩子 拥有 健康 舒适 的 睡眠 环境。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案7 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-15</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 天然 材质 床品 # 健康 睡眠 的 首选</h3>
+            <p class="text-gray-600 mb-4">天然 材质 床品 越来越 受 消费者 青睐， 它们 真的 比 合成 材质 更好 吗？ 本文 详解 棉、 麻、 丝、 羊毛 等 天然 材质 的 特点 和 适用 场景， 帮你 选择 最 适合 自己 的 健康 床品。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案8 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-14</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 卧室 照明 设计 # 光线 影响 睡眠 质量</h3>
+            <p class="text-gray-600 mb-4">卧室 照明 设计 对 睡眠 质量 有 重要 影响， 如何 设计 合理 的 卧室 照明 系统？ 本文 分享 卧室 照明 设计 技巧， 从 主 灯 选择 到 辅助 光源 布置， 让 你的 卧室 光线 既 舒适 又 有助于 睡眠。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案9 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-13</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 情侣 卧室 布置 # 打造 浪漫 又 舒适 的 二人 世界</h3>
+            <p class="text-gray-600 mb-4">情侣 卧室 布置 需要 兼顾 浪漫 和 实用性， 如何 打造 一个 既 浪漫 又 舒适 的 二人 世界？ 本文 分享 情侣 卧室 布置 技巧， 从 色彩 搭配 到 家具 选择， 让 你的 卧室 充满 爱 的 氛围。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案10 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-douyin bg-opacity-10 text-douyin px-3 py-1 rounded-full text-sm">热门话题</span>
+              <span class="text-gray-500 text-sm">2025-07-12</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3"># 租房 卧室 改造 # 小 预算 也 能 打造 舒适 睡眠 空间</h3>
+            <p class="text-gray-600 mb-4">租房 卧室 改造 是 很多 年轻人 的 需求， 如何 在 有限 的 预算 和 条件 下 打造 舒适 的 睡眠 空间？ 本文 分享 租房 卧室 改造 技巧， 从 床垫 选择 到 软装 搭配， 让 你的 租房 也 能 有 家 的 感觉。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 情感话题 -->
+      <div id="content-emotion" class="tab-pane hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 文案1 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-21</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【情感 故事】 一张 床垫 承载 的 爱情 记忆</h3>
+            <p class="text-gray-600 mb-4">从 初恋 到 婚姻， 从 出租屋 到 温馨 家， 一张 床垫 见证 了 无数 爱情 故事。 本文 分享 几个 关于 床垫 的 感人 故事， 让 我们 明白， 家 的 温暖 不 仅仅 来自 于 房子 本身， 更 来自 于 那些 陪伴 我们 度过 无数 夜晚 的 床品。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案2 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-20</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 睡眠 与 情感】 为什么 舒适 的 床品 能 改善 夫妻关系</h3>
+            <p class="text-gray-600 mb-4">睡眠 质量 对 夫妻关系 有 重要 影响， 研究 表明， 共同 拥有 舒适 睡眠 环境 的 夫妻 关系 更 和谐。 本文 从 心理学 角度 分析 睡眠 与 情感 的 关系， 并 分享 如何 通过 改善 床品 提升 睡眠 质量， 进而 改善 夫妻关系。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案3 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-19</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 童年 记忆】 那些 关于 床 的 温暖 回忆</h3>
+            <p class="text-gray-600 mb-4">每个人 的 童年 都 有 一张 特别 的 床， 它 承载 着 我们 无数 的 梦想 和 回忆。 本文 邀请 几位 读者 分享 他们 童年 关于 床 的 温暖 回忆， 让 我们 重新 感受 家 的 温暖 和 床品 的 重要性。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案4 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-18</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 家 的 味道】 床品 如何 营造 温馨 的 家 氛围</h3>
+            <p class="text-gray-600 mb-4">家 的 氛围 很大 程度 上 由 软装 决定， 而 床品 作为 卧室 的 核心 元素， 对 营造 温馨 的 家 氛围 至关 重要。 本文 分享 如何 通过 选择 合适 的 床品 颜色、 材质 和 图案， 打造 一个 温馨 舒适 的 家。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案5 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-17</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 异地恋】 床品 如何 缓解 思念 之 苦</h3>
+            <p class="text-gray-600 mb-4">异地恋 是 很多 情侣 面临 的 挑战， 如何 缓解 思念 之 苦？ 本文 分享 几位 异地恋 情侣 的 故事， 他们 通过 选择 相同 的 床品， 让 对方 的 气息 陪伴 自己 度过 漫长 的 夜晚， 让 距离 不再 成为 爱情 的 障碍。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案6 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-16</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 产后 妈妈】 舒适 的 床品 如何 帮助 妈妈 恢复</h3>
+            <p class="text-gray-600 mb-4">产后 恢复 对 妈妈 们 至关 重要， 而 舒适 的 睡眠 环境 是 产后 恢复 的 关键。 本文 分享 如何 选择 适合 产后 妈妈 的 床品， 从 床垫 硬度 到 被子 厚度， 帮助 妈妈 们 更好 地 恢复 身体 和 精神。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案7 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-15</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 独居 生活】 床品 如何 陪伴 我们 度过 孤独 时光</h3>
+            <p class="text-gray-600 mb-4">独居 生活 虽然 自由， 但 也 难免 感到 孤独。 本文 分享 几位 独居 人士 的 故事， 他们 如何 通过 选择 舒适 的 床品， 让 卧室 成为 心灵 的 避风港， 陪伴 自己 度过 孤独 时光。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案8 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-14</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 退休 生活】 舒适 的 床品 如何 提升 晚年 幸福感</h3>
+            <p class="text-gray-600 mb-4">退休 后， 我们 有 更多 的 时间 在家 中 度过， 舒适 的 床品 对 提升 晚年 幸福感 至关 重要。 本文 分享 几位 退休 老人 的 故事， 他们 如何 通过 选择 合适 的 床品， 让 晚年 生活 更加 舒适 和 幸福。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案9 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-13</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 创业 故事】 一张 床垫 背后 的 创业 梦想</h3>
+            <p class="text-gray-600 mb-4">很多 创业者 都 有 在 床垫 上 工作 的 经历， 一张 舒适 的 床垫 不仅 能 提供 良好 的 休息， 还 能 激发 创意思维。 本文 分享 几位 成功 创业者 的 故事， 讲述 床垫 如何 陪伴 他们 度过 创业 的 艰难 时光。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案10 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm">情感话题</span>
+              <span class="text-gray-500 text-sm">2025-07-12</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 乡愁】 床品 如何 唤起 我们 对 家 的 思念</h3>
+            <p class="text-gray-600 mb-4">离开 家 后， 我们 常常 会 因为 某些 物品 而 想起 家 的 温暖。 本文 分享 几位 游子 的 故事， 他们 如何 通过 携带 家乡 的 床品， 或者 选择 与 家乡 相似 的 床品， 来 缓解 乡愁， 让 异乡 也 能 有 家 的 感觉。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 探店话题 -->
+      <div id="content-store" class="tab-pane hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 文案1 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-21</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 分享】 隐藏 在 老 街区 的 宝藏 家纺 店</h3>
+            <p class="text-gray-600 mb-4">在 城市 的 老 街区 里， 隐藏 着 很多 宝藏 小店。 本文 带 你 探访 一家 位于 老 街区 的 家纺 店， 这里 的 床品 不仅 质量 上乘， 而且 设计 独特， 每 一件 都 有 自己 的 故事。 店主 还 分享 了 很多 床品 选购 和 保养 的 小 技巧。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案2 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-20</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 测评】 宜家 新品 床垫 深度 体验</h3>
+            <p class="text-gray-600 mb-4">宜家 推出 了 新款 床垫， 号称 能 提供 五星级 酒店 的 睡眠 体验。 本文 带 你 实地 探访 宜家 门店， 对 这款 新品 床垫 进行 深度 体验 和 测评， 从 舒适度、 支撑 性、 透气性 等 多个 维度 进行 全面 分析。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案3 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-19</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 攻略】 上海 家纺 店 打卡 地图</h3>
+            <p class="text-gray-600 mb-4">上海 有 很多 值得 一 去 的 家纺 店， 本文 为 你 整理 了 一份 上海 家纺 店 打卡 地图， 包括 高端 品牌 旗舰店、 设计师 品牌 集合店、 性价比 高 的 平价 店 等 多种 类型， 让 你 轻松 找到 适合 自己 的 家纺 店。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案4 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-18</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 揭秘】 高端 家纺 品牌 的 工厂 店 在哪里</h3>
+            <p class="text-gray-600 mb-4">很多 高端 家纺 品牌 都 有 自己 的 工厂 店， 在 那里 你 可以 以 优惠 的 价格 购买 到 高品质 的 床品。 本文 带 你 探访 几家 知名 家纺 品牌 的 工厂 店， 揭秘 工厂 店 的 位置、 营业时间 和 选购 技巧。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案5 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-17</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 体验】 智能家居 店 的 睡眠 解决方案</h3>
+            <p class="text-gray-600 mb-4">随着 科技 的 发展， 智能家居 越来越 普及。 本文 带 你 探访 一家 智能家居 店， 体验 他们 提供 的 智能 睡眠 解决方案， 包括 智能 床垫、 智能 枕头、 智能 照明 等 多种 产品， 看看 科技 如何 改变 我们 的 睡眠 体验。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案6 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-16</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 指南】 如何 在 家纺 批发市场 淘 到 宝</h3>
+            <p class="text-gray-600 mb-4">家纺 批发市场 是 很多 人 淘 宝 的 好 地方， 但 对于 新手 来说， 可能 会 感到 迷茫。 本文 带 你 探访 家纺 批发市场， 分享 如何 在 批发市场 挑选 优质 床品， 如何 砍价， 以及 哪些 摊位 值得 一 逛。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案7 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-15</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 对比】 线上 线下 家纺 店 购物 体验 对比</h3>
+            <p class="text-gray-600 mb-4">现在 我们 可以 在线 上 或 线下 购买 家纺 产品， 两种 方式 各 有 优劣。 本文 带 你 探访 几家 线上 知名 家纺 品牌 的 线下 门店， 对比 线上 线下 的 产品 质量、 价格、 服务 等 多个 方面， 帮你 选择 最 适合 自己 的 购物 方式。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案8 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-14</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 发现】 小众 设计师 家纺 品牌 的 独特 魅力</h3>
+            <p class="text-gray-600 mb-4">除了 知名 品牌， 市场 上 还有 很多 小众 设计师 家纺 品牌， 它们 以 独特 的 设计 和 高品质 赢得 了 消费者 的 青睐。 本文 带 你 探访 几家 小众 设计师 家纺 品牌 的 门店， 感受 它们 的 独特 魅力。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案9 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-13</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 攻略】 家纺 店 促销 活动 怎么 买 最 划算</h3>
+            <p class="text-gray-600 mb-4">家纺 店 经常 会 举办 促销 活动， 但 如何 才能 在 促销 活动 中 买到 最 划算 的 产品？ 本文 带 你 探访 几家 家纺 店， 了解 他们 的 促销 策略 和 折扣 规则， 分享 如何 在 促销 活动 中 挑选 到 性价比 最高 的 床品。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+          
+          <!-- 文案10 -->
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">探店话题</span>
+              <span class="text-gray-500 text-sm">2025-07-12</span>
+            </div>
+            <h3 class="text-lg font-bold mb-3">【 探店 体验】 五星级 酒店 的 床品 在哪里 买</h3>
+            <p class="text-gray-600 mb-4">很多 人 都 喜欢 五星级 酒店 的 床品， 想 知道 在哪里 可以 买到 同款。 本文 带 你 探访 几家 为 五星级 酒店 提供 床品 的 品牌 门店， 体验 这些 高端 床品 的 舒适度， 并 了解 如何 购买 到 性价比 高 的 酒店 同款 床品。</p>
+            <div class="flex space-x-3">
+              <button class="copy-btn px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all flex items-center">
+                <i class="fa fa-copy mr-2"></i>复制文案
+              </button>
+              <button class="rewrite-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center">
+                <i class="fa fa-magic mr-2"></i>AI改写
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <div class="flex items-center space-x-2">
+            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-8 w-8">
+            <span class="text-lg font-bold text-primary">枕朵新媒体运营中心</span>
+          </div>
+          <p class="text-gray-500 text-sm mt-1">枕朵专业全域流量赋能家纺、家具店</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="text-gray-500 text-sm">© 2025 枕朵新媒体运营中心. 保留所有权利.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 改写文案模态框 -->
+  <div id="rewriteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-primary">AI改写</h3>
+          <button id="closeRewriteModal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+            <i class="fa fa-times text-xl"></i>
+          </button>
+        </div>
+        <div class="mb-4">
+          <label for="originalText" class="block text-gray-700 font-medium mb-2">原文案</label>
+          <textarea id="originalText" class="w-full border border-gray-300 rounded-md p-3 bg-gray-50" rows="5" readonly></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="rewrittenText" class="block text-gray-700 font-medium mb-2">改写后文案</label>
+          <textarea id="rewrittenText" class="w-full border border-gray-300 rounded-md p-3" rows="5"></textarea>
+        </div>
+        <div class="flex justify-end space-x-3">
+          <button id="cancelRewrite" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-all">
+            取消
+          </button>
+          <button id="saveRewrite" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
+            保存
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // 标签页切换
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // 移除所有标签页按钮的活动状态
+          tabBtns.forEach(b => {
+            b.classList.remove('active', 'bg-primary', 'text-white');
+            b.classList.add('bg-gray-200', 'text-gray-700');
+          });
+          
+          // 添加当前标签页按钮的活动状态
+          btn.classList.add('active', 'bg-primary', 'text-white');
+          btn.classList.remove('bg-gray-200', 'text-gray-700');
+          
+          // 隐藏所有标签页内容
+          tabPanes.forEach(pane => {
+            pane.classList.add('hidden');
+            pane.classList.remove('active');
+          });
+          
+          // 显示当前标签页内容
+          const tabId = btn.id.replace('tab-', 'content-');
+          const activePane = document.getElementById(tabId);
+          activePane.classList.remove('hidden');
+          activePane.classList.add('active');
+        });
+      });
+      
+      // 复制文案功能
+      const copyBtns = document.querySelectorAll('.copy-btn');
+      copyBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          try {
+            const card = this.closest('.bg-white');
+            const title = card.querySelector('h3').innerText;
+            const content = card.querySelector('p').innerText;
+            const textToCopy = `${title}\n\n${content}`;
+            
+            // 检查浏览器是否支持剪贴板API
+            if (!navigator.clipboard) {
+              // 降级处理：使用文本区域和document.execCommand
+              const textarea = document.createElement('textarea');
+              textarea.value = textToCopy;
+              document.body.appendChild(textarea);
+              textarea.select();
+              document.execCommand('copy');
+              document.body.removeChild(textarea);
+              
+              // 显示复制成功提示
+              const originalText = this.innerHTML;
+              this.innerHTML = '<i class="fa fa-check mr-2"></i>已复制';
+              this.classList.add('bg-green-600');
+              
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('bg-green-600');
+              }, 2000);
+              return;
+            }
+            
+            // 使用现代剪贴板API
+            navigator.clipboard.writeText(textToCopy).then(() => {
+              // 显示复制成功提示
+              const originalText = this.innerHTML;
+              this.innerHTML = '<i class="fa fa-check mr-2"></i>已复制';
+              this.classList.add('bg-green-600');
+              
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('bg-green-600');
+              }, 2000);
+            }).catch(error => {
+              console.error('复制失败:', error);
+              // 降级处理
+              const textarea = document.createElement('textarea');
+              textarea.value = textToCopy;
+              document.body.appendChild(textarea);
+              textarea.select();
+              document.execCommand('copy');
+              document.body.removeChild(textarea);
+              
+              // 显示复制成功提示
+              const originalText = this.innerHTML;
+              this.innerHTML = '<i class="fa fa-check mr-2"></i>已复制';
+              this.classList.add('bg-green-600');
+              
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('bg-green-600');
+              }, 2000);
+            });
+          } catch (error) {
+            console.error('复制功能出错:', error);
+            alert('复制失败，请手动复制内容。');
+          }
+        });
+      });
+      
+      // AI改写功能
+      const rewriteBtns = document.querySelectorAll('.rewrite-btn');
+      const rewriteModal = document.getElementById('rewriteModal');
+      const closeRewriteModal = document.getElementById('closeRewriteModal');
+      const cancelRewrite = document.getElementById('cancelRewrite');
+      const saveRewrite = document.getElementById('saveRewrite');
+      const originalText = document.getElementById('originalText');
+      const rewrittenText = document.getElementById('rewrittenText');
+      
+      let currentCard = null;
+      
+      // 定义AI改写的不同风格和词汇库
+      const aiStyles = [
+        {
+          name: "简洁风格",
+          prefixes: ["", "【精选】", "【干货】", "【分享】"],
+          replacements: {
+            "如何": "怎样",
+            "打造": "创建",
+            "提升": "提高",
+            "方法": "技巧",
+            "策略": "方法",
+            "秘诀": "技巧",
+            "分享": "解析",
+            "详解": "解析",
+            "介绍": "分享",
+            "打造": "构建",
+            "建立": "构建",
+            "增强": "提升",
+            "提升": "增强",
+            "优化": "改进",
+            "改进": "优化",
+            "选择": "挑选",
+            "挑选": "选择",
+            "使用": "应用",
+            "应用": "使用",
+            "适合": "合适",
+            "合适": "适合",
+            "重要": "关键",
+            "关键": "重要",
+            "有效": "高效",
+            "高效": "有效"
+          }
+        },
+        {
+          name: "专业风格",
+          prefixes: ["【专业解析】", "【深度剖析】", "【专家视角】", "【行业洞察】"],
+          replacements: {
+            "如何": "如何系统性地",
+            "打造": "构建",
+            "提升": "优化",
+            "方法": "方法论",
+            "策略": "战略",
+            "秘诀": "核心要素",
+            "分享": "分享专业见解",
+            "详解": "深度解析",
+            "介绍": "系统介绍",
+            "打造": "精心构建",
+            "建立": "构建",
+            "增强": "强化",
+            "提升": "优化",
+            "优化": "迭代优化",
+            "改进": "持续改进",
+            "选择": "审慎选择",
+            "挑选": "精心挑选",
+            "使用": "应用",
+            "应用": "实践应用",
+            "适合": "适配",
+            "合适": "适宜",
+            "重要": "至关重要",
+            "关键": "核心",
+            "有效": "行之有效",
+            "高效": "高效能"
+          }
+        },
+        {
+          name: "热情风格",
+          prefixes: ["【重磅】", "【必看】", "【强烈推荐】", "【惊艳】"],
+          replacements: {
+            "如何": "你知道如何",
+            "打造": "打造令人惊艳的",
+            "提升": "显著提升",
+            "方法": "超级方法",
+            "策略": "绝妙策略",
+            "秘诀": "独家秘诀",
+            "分享": "隆重分享",
+            "详解": "全面揭秘",
+            "介绍": "隆重介绍",
+            "打造": "精心打造",
+            "建立": "成功建立",
+            "增强": "大大增强",
+            "提升": "显著提升",
+            "优化": "全面优化",
+            "改进": "大幅改进",
+            "选择": "明智选择",
+            "挑选": "精心挑选",
+            "使用": "充分利用",
+            "应用": "巧妙应用",
+            "适合": "完美适合",
+            "合适": "理想合适",
+            "重要": "极其重要",
+            "关键": "核心关键",
+            "有效": "非常有效",
+            "高效": "超高效率"
+          }
+        }
+      ];
+      
+      // 随机选择一种改写风格
+      function getRandomStyle() {
+        return aiStyles[Math.floor(Math.random() * aiStyles.length)];
+      }
+      
+      // 应用风格替换文本
+      function applyStyle(text, style) {
+        let result = text;
+        
+        // 替换标题前缀
+        const titleMatch = result.match(/^【[^】]+】/);
+        if (titleMatch) {
+          const randomPrefix = style.prefixes[Math.floor(Math.random() * style.prefixes.length)];
+          result = result.replace(titleMatch[0], randomPrefix ? randomPrefix : "");
+        }
+        
+        // 替换词汇
+        Object.keys(style.replacements).forEach(key => {
+          const regex = new RegExp(key, 'g');
+          result = result.replace(regex, style.replacements[key]);
+        });
+        
+        return result;
+      }
+      
+      // 模拟AI改写过程
+      function aiRewrite(text) {
+        const style = getRandomStyle();
+        const paragraphs = text.split('\n\n');
+        
+        // 对标题和每个段落应用不同的改写
+        const rewrittenParagraphs = paragraphs.map((paragraph, index) => {
+          if (index === 0) {
+            // 标题改写
+            return applyStyle(paragraph, style);
+          } else {
+            // 内容改写
+            let rewritten = applyStyle(paragraph, style);
+            
+            // 添加一些随机变化
+            if (Math.random() > 0.5) {
+              // 随机添加一些连接词或短语
+              const connectors = ["此外，", "而且，", "值得注意的是，", "更重要的是，", "有趣的是，"];
+              const randomConnector = connectors[Math.floor(Math.random() * connectors.length)];
+              rewritten = randomConnector + rewritten;
+            }
+            
+            return rewritten;
+          }
+        });
+        
+        return rewrittenParagraphs.join('\n\n');
+      }
+      
+      rewriteBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          currentCard = this.closest('.bg-white');
+          const title = currentCard.querySelector('h3').innerText;
+          const content = currentCard.querySelector('p').innerText;
+          
+          originalText.value = `${title}\n\n${content}`;
+          rewrittenText.value = '';
+          rewriteModal.classList.remove('hidden');
+          
+          // 自动触发AI改写
+          setTimeout(() => {
+            // 显示加载动画
+            rewrittenText.placeholder = 'AI正在分析并改写文案...';
+            rewrittenText.disabled = true;
+            
+            // 模拟AI处理时间
+            setTimeout(() => {
+              const aiResult = aiRewrite(`${title}\n\n${content}`);
+              rewrittenText.value = aiResult;
+              rewrittenText.placeholder = '';
+              rewrittenText.disabled = false;
+            }, 1500);
+          }, 300);
+        });
+      });
+      
+      function closeModal() {
+        rewriteModal.classList.add('hidden');
+        currentCard = null;
+      }
+      
+      closeRewriteModal.addEventListener('click', closeModal);
+      cancelRewrite.addEventListener('click', closeModal);
+      
+      saveRewrite.addEventListener('click', function() {
+        if (currentCard && rewrittenText.value.trim() !== '') {
+          const textParts = rewrittenText.value.split('\n\n');
+          const title = textParts[0];
+          const content = textParts.slice(1).join('\n\n');
+          
+          currentCard.querySelector('h3').innerText = title;
+          currentCard.querySelector('p').innerText = content;
+          
+          // 自动复制到剪贴板
+          const textToCopy = rewrittenText.value;
+          
+          function copyToClipboard(text) {
+            try {
+              // 检查浏览器是否支持剪贴板API
+              if (!navigator.clipboard) {
+                // 降级处理：使用文本区域和document.execCommand
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                return true;
+              }
+              
+              // 使用现代剪贴板API
+              return navigator.clipboard.writeText(text);
+            } catch (error) {
+              console.error('复制失败:', error);
+              return false;
+            }
+          }
+          
+          // 执行复制操作
+          const copyPromise = copyToClipboard(textToCopy);
+          
+          // 显示保存成功提示
+          const originalText = this.innerHTML;
+          
+          if (copyPromise instanceof Promise) {
+            copyPromise.then(() => {
+              this.innerHTML = '<i class="fa fa-check mr-2"></i>已保存并复制';
+              this.classList.add('bg-green-600');
+              
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('bg-green-600');
+                closeModal();
+              }, 1000);
+            }).catch(() => {
+              this.innerHTML = '<i class="fa fa-check mr-2"></i>已保存';
+              this.classList.add('bg-green-600');
+              
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('bg-green-600');
+                closeModal();
+              }, 1000);
+            });
+          } else {
+            if (copyPromise) {
+              this.innerHTML = '<i class="fa fa-check mr-2"></i>已保存并复制';
+            } else {
+              this.innerHTML = '<i class="fa fa-check mr-2"></i>已保存';
+            }
+            this.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.classList.remove('bg-green-600');
+              closeModal();
+            }, 1000);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

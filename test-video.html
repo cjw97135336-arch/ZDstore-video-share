@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频嵌入测试</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <h1 class="text-2xl font-bold mb-6 text-center">腾讯视频链接嵌入测试</h1>
+    
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-4">测试1: 直接嵌入原始链接</h2>
+      <div class="aspect-video bg-black rounded-lg overflow-hidden">
+        <iframe src="https://v.qq.com/x/page/t3176kguor2.html" 
+                class="w-full h-full" 
+                allowfullscreen></iframe>
+      </div>
+      <p class="mt-2 text-sm text-gray-600">直接使用提供的URL作为iframe源</p>
+    </div>
+    
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-4">测试2: 使用嵌套iframe</h2>
+      <div class="aspect-video bg-black rounded-lg overflow-hidden">
+        <iframe src="https://v.qq.com/iframe/player.html?vid=t3176kguor2&auto=0" 
+                allowFullScreen="true"
+                class="w-full h-full"></iframe>
+      </div>
+      <p class="mt-2 text-sm text-gray-600">使用腾讯视频提供的iframe嵌入代码</p>
+    </div>
+    
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-4">测试3: 带参数的嵌入链接</h2>
+      <div class="aspect-video bg-black rounded-lg overflow-hidden">
+        <iframe src="https://v.qq.com/x/page/t3176kguor2.html?auto=1&loop=1" 
+                class="w-full h-full" 
+                allowfullscreen></iframe>
+      </div>
+      <p class="mt-2 text-sm text-gray-600">添加自动播放和循环参数</p>
+    </div>
+    
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-4">测试4: 视频卡片</h2>
+      <div class="bg-white rounded-lg overflow-hidden shadow-md">
+        <div class="aspect-video bg-black relative">
+          <iframe src="https://v.qq.com/x/page/t3176kguor2.html" 
+                  class="w-full h-full" 
+                  allowfullscreen></iframe>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-16 h-16 bg-primary bg-opacity-80 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition-all">
+              <i class="fa fa-play text-white text-2xl ml-1"></i>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-bold">枕朵宣传片</h3>
+          <p class="text-gray-600 mt-1">枕朵专业全域流量赋能记忆枕源头工厂</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold mb-4">测试结果</h2>
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <p class="mb-2"><strong>问题分析：</strong></p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>腾讯视频可能限制了直接嵌入其页面</li>
+          <li>iframe可能无法正确加载或播放视频</li>
+          <li>需要使用腾讯视频提供的官方嵌入代码</li>
+        </ul>
+        
+        <p class="mt-4 mb-2"><strong>解决方案：</strong></p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>使用腾讯视频的官方嵌入代码格式</li>
+          <li>如果嵌入仍有问题，考虑添加视频封面和链接按钮</li>
+          <li>提供备用的视频播放方案</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"></script>
+</body>
+</html>

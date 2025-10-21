@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复制功能测试页面</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3D5A80',
+                        secondary: '#6B7280',
+                        light: '#F3F4F6',
+                        dark: '#1F2937',
+                        douyin: '#FE2C55'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            .transition-all {
+                transition: all 0.3s ease;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-primary mb-2">复制功能测试页面</h1>
+            <p class="text-gray-600">测试复制文案功能和AI改写保存后自动复制功能</p>
+        </header>
+
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-primary">测试复制文案功能</h2>
+            
+            <div class="bg-white rounded-lg shadow-sm p-4 border border-gray-200 mb-6">
+                <h3 class="text-lg font-medium mb-2">测试标题</h3>
+                <p class="text-gray-700 mb-4">这是一段测试内容，用于测试复制文案功能。点击下面的复制按钮，应该能将标题和内容复制到剪贴板。</p>
+                <button class="copy-btn bg-primary hover:bg-blue-700 text-white font-medium py-2 px-4 rounded flex items-center-center items-center-center">
+                    <i class="fa fa-copy mr-2"></i>复制文案
+                </button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
+                <h3 class="text-lg font-medium mb-2">【精选】如何选择适合自己的记忆枕</h3>
+                <p class="text-gray-700 mb-4">记忆枕的选择需要考虑个人的睡眠习惯、颈椎状况和偏好。优质的记忆枕能够应该提供适当的支撑，帮助维持颈椎的自然曲线，同时具有良好的透气性和舒适度。在选择时，可以注意材质的密度、硬度和回弹时间，这些都会会影响使用体验。</p>
+                <button class="copy-btn bg-primary hover:bg-blue-700 text-white font-medium py-2 px-4 rounded flex items-center">
+                    <i class="fa fa-copy mr-2"></i>复制文案
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4 text-primary">测试AI改写保存后自动复制功能</h2>
+            
+            <div class="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
+                <h3 class="text-lg font-medium mb-2">【【干货】记忆枕的正确使用方法</h3>
+                <p class="text-gray-700 mb-4">正确使用记忆枕对于获得最佳睡眠体验至关重要。首先，确保枕头的高度适合你的睡眠姿势 - 仰卧时枕头应支撑颈椎自然曲线，侧卧时应填补头部与肩膀之间的空隙。其次，给记忆枕足够的时间适应你的身体形状，通常需要2-3周的使用期。最后，定期清洁枕套，保持枕头的卫生和使用寿命。</p>
+                <button class="rewrite-btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded flex items-center">
+                    <i class="fa fa-magic mr-2"></i>AI改写
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI改写模态框 -->
+    <div id="rewriteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-primary">AI改写</h3>
+                    <button id="closeRewriteModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">原文</label>
+                    <textarea id="originalText" class="w-full border border-gray-300 rounded-md p-3 h-32 resize-none bg-gray-50" readonly></textarea>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">改写后</label>
+                    <textarea id="rewrittenText" class="w-full border border-gray-300 rounded-md p-3 h-32 resize-none" placeholder="AI正在分析并改写文案..."></textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-3">
+                    <button id="cancelRewrite" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">
+                        取消
+                    </button>
+                    <button id="saveRewrite" class="bg-primary hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
+                        保存
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 复制文案功能
+            const copyBtns = document.querySelectorAll('.copy-btn');
+            copyBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    try {
+                        const card = this.closest('.bg-white');
+                        const title = card.querySelector('h3').innerText;
+                        const content = card.querySelector('p').innerText;
+                        const textToCopy = `${title}\n\n${content}`;
+                        
+                        // 检查浏览器是否支持剪贴板API
+                        if (!navigator.clipboard) {
+                            // 降级处理：使用文本区域和document.execCommand
+                            const textarea = document.createElement('textarea');
+                            textarea.value = textToCopy;
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                            
+                            // 显示复制成功提示
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fa fa-check mr-2"></i>已复制';
+                            this.classList.add('bg-green-600');
+                            
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('bg-green-600');
+                            }, 2000);
+                            return;
+                        }
+                        
+                        // 使用现代剪贴板API
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            // 显示复制成功提示
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fa fa-check mr-2"></i>已复制';
+                            this.classList.add('bg-green-600');
+                            
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('bg-green-600');
+                            }, 2000);
+                        }).catch(error => {
+                            console.error('复制失败:', error);
+                            // 降级处理
+                            const textarea = document.createElement('textarea');
+                            textarea.value = textToCopy;
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                            
+                            // 显示复制成功提示
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fa fa-check mr-2"></i>已复制';
+                            this.classList.add('bg-green-600');
+                            
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('bg-green-600');
+                            }, 2000);
+                        });
+                    } catch (error) {
+                        console.error('复制功能出错:', error);
+                        alert('复制失败，请手动复制内容。');
+                    }
+                });
+            });
+            
+            // AI改写功能
+            const rewriteBtns = document.querySelectorAll('.rewrite-btn');
+            const rewriteModal = document.getElementById('rewriteModal');
+            const closeRewriteModal = document.getElementById('closeRewriteModal');
+            const cancelRewrite = document.getElementById('cancelRewrite');
+            const saveRewrite = document.getElementById('saveRewrite');
+            const originalText = document.getElementById('originalText');
+            const rewrittenText = document.getElementById('rewrittenText');
+            
+            let currentCard = null;
+            
+            // 定义AI改写的不同风格和词汇库
+            const aiStyles = [
+                {
+                    name: "简洁风格",
+                    prefixes: ["", "【精选】", "【干货】", "【分享】"],
+                    replacements: {
+                        "如何": "怎样",
+                        "打造": "创建",
+                        "提升": "提高",
+                        "方法": "技巧",
+                        "策略": "方法",
+                        "秘诀": "技巧",
+                        "分享": "解析",
+                        "详解": "解析",
+                        "介绍": "分享",
+                        "打造": "构建",
+                        "建立": "构建",
+                        "增强": "提升",
+                        "提升": "增强",
+                        "优化": "改进",
+                        "改进": "优化",
+                        "选择": "挑选",
+                        "挑选": "选择",
+                        "使用": "应用",
+                        "应用": "使用",
+                        "适合": "合适",
+                        "合适": "适合",
+                        "重要": "关键",
+                        "关键": "重要",
+                        "有效": "高效",
+                        "高效": "有效"
+                    }
+                },
+                {
+                    name: "专业风格",
+                    prefixes: ["【专业解析】", "【深度剖析】", "【专家视角】", "【行业洞察】"],
+                    replacements: {
+                        "如何": "如何系统性地",
+                        "打造": "构建",
+                        "提升": "优化",
+                        "方法": "方法论",
+                        "策略": "战略",
+                        "秘诀": "核心要素",
+                        "分享": "分享专业见解",
+                        "详解": "深度解析",
+                        "介绍": "系统介绍",
+                        "打造": "精心构建",
+                        "建立": "构建",
+                        "增强": "强化",
+                        "提升": "优化",
+                        "优化": "迭代优化",
+                        "改进": "持续改进",
+                        "选择": "审慎选择",
+                        "挑选": "精心挑选",
+                        "使用": "应用",
+                        "应用": "实践应用",
+                        "适合": "适配",
+                        "合适": "适宜",
+                        "重要": "至关重要",
+                        "关键": "核心",
+                        "有效": "行之有效",
+                        "高效": "高效能"
+                    }
+                },
+                {
+                    name: "热情风格",
+                    prefixes: ["【重磅】", "【必看】", "【强烈推荐】", "【惊艳】"],
+                    replacements: {
+                        "如何": "你知道如何",
+                        "打造": "打造令人惊艳的",
+                        "提升": "显著提升",
+                        "方法": "超级方法",
+                        "策略": "绝妙策略",
+                        "秘诀": "独家秘诀",
+                        "分享": "隆重分享",
+                        "详解": "全面揭秘",
+                        "介绍": "隆重介绍",
+                        "打造": "精心打造",
+                        "建立": "成功建立",
+                        "增强": "大大增强",
+                        "提升": "显著提升",
+                        "优化": "全面优化",
+                        "改进": "大幅改进",
+                        "选择": "明智选择",
+                        "挑选": "精心挑选",
+                        "使用": "充分利用",
+                        "应用": "巧妙应用",
+                        "适合": "完美适合",
+                        "合适": "理想合适",
+                        "重要": "极其重要",
+                        "关键": "核心关键",
+                        "有效": "非常有效",
+                        "高效": "超高效率"
+                    }
+                }
+            ];
+            
+            // 随机选择一种改写风格
+            function getRandomStyle() {
+                return aiStyles[Math.floor(Math.random() * aiStyles.length)];
+            }
+            
+            // 应用风格替换文本
+            function applyStyle(text, style) {
+                let result = text;
+                
+                // 替换标题前缀
+                const titleMatch = result.match(/^【[^】]+】/);
+                if (titleMatch) {
+                    const randomPrefix = style.prefixes[Math.floor(Math.random() * style.prefixes.length)];
+                    result = result.replace(titleMatch[0], randomPrefix ? randomPrefix : "");
+                }
+                
+                // 替换词汇
+                Object.keys(style.replacements).forEach(key => {
+                    const regex = new RegExp(key, 'g');
+                    result = result.replace(regex, style.replacements[key]);
+                });
+                
+                return result;
+            }
+            
+            // 模拟AI改写过程
+            function aiRewrite(text) {
+                const style = getRandomStyle();
+                const paragraphs = text.split('\n\n');
+                
+                // 对标题和每个段落应用不同的改写
+                const rewrittenParagraphs = paragraphs.map((paragraph, index) => {
+                    if (index === 0) {
+                        // 标题改写
+                        return applyStyle(paragraph, style);
+                    } else {
+                        // 内容改写
+                        let rewritten = applyStyle(paragraph, style);
+                        
+                        // 添加一些随机变化
+                        if (Math.random() > 0.5) {
+                            // 随机添加一些连接词或短语
+                            const connectors = ["此外，", "而且，", "值得注意的是，", "更重要的是，", "有趣的是，"];
+                            const randomConnector = connectors[Math.floor(Math.random() * connectors.length)];
+                            rewritten = randomConnector + rewritten;
+                        }
+                        
+                        return rewritten;
+                    }
+                });
+                
+                return rewrittenParagraphs.join('\n\n');
+            }
+            
+            rewriteBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    currentCard = this.closest('.bg-white');
+                    const title = currentCard.querySelector('h3').innerText;
+                    const content = currentCard.querySelector('p').innerText;
+                    
+                    originalText.value = `${title}\n\n${content}`;
+                    rewrittenText.value = '';
+                    rewriteModal.classList.remove('hidden');
+                    
+                    // 自动触发AI改写
+                    setTimeout(() => {
+                        // 显示加载动画
+                        rewrittenText.placeholder = 'AI正在分析并改写文案...';
+                        rewrittenText.disabled = true;
+                        
+                        // 模拟AI处理时间
+                        setTimeout(() => {
+                            const aiResult = aiRewrite(`${title}\n\n${content}`);
+                            rewrittenText.value = aiResult;
+                            rewrittenText.placeholder = '';
+                            rewrittenText.disabled = false;
+                        }, 1500);
+                    }, 300);
+                });
+            });
+            
+            function closeModal() {
+                rewriteModal.classList.add('hidden');
+                currentCard = null;
+            }
+            
+            closeRewriteModal.addEventListener('click', closeModal);
+            cancelRewrite.addEventListener('click', closeModal);
+            
+            saveRewrite.addEventListener('click', function() {
+                if (currentCard && rewrittenText.value.trim() !== '') {
+                    const textParts = rewrittenText.value.split('\n\n');
+                    const title = textParts[0];
+                    const content = textParts.slice(1).join('\n\n');
+                    
+                    currentCard.querySelector('h3').innerText = title;
+                    currentCard.querySelector('p').innerText = content;
+                    
+                    // 自动复制到剪贴板
+                    const textToCopy = rewrittenText.value;
+                    
+                    function copyToClipboard(text) {
+                        try {
+                            // 检查浏览器是否支持剪贴板API
+                            if (!navigator.clipboard) {
+                                // 降级处理：使用文本区域和document.execCommand
+                                const textarea = document.createElement('textarea');
+                                textarea.value = text;
+                                document.body.appendChild(textarea);
+                                textarea.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(textarea);
+                                return true;
+                            }
+                            
+                            // 使用现代剪贴板API
+                            return navigator.clipboard.writeText(text);
+                        } catch (error) {
+                            console.error('复制失败:', error);
+                            return false;
+                        }
+                    }
+                    
+                    // 执行复制操作
+                    const copyPromise = copyToClipboard(textToCopy);
+                    
+                    // 显示保存成功提示
+                    const originalText = this.innerHTML;
+                    
+                    if (copyPromise instanceof Promise) {
+                        copyPromise.then(() => {
+                            this.innerHTML = '<i class="fa fa-check mr-2"></i>已保存并复制';
+                            this.classList.add('bg-green-600');
+                            
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('bg-green-600');
+                                closeModal();
+                            }, 1000);
+                        }).catch(() => {
+                            this.innerHTML = '<i class="fa fa-check mr-2"></i>已保存';
+                            this.classList.add('bg-green-600');
+                            
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('bg-green-600');
+                                closeModal();
+                            }, 1000);
+                        });
+                    } else {
+                        if (copyPromise) {
+                            this.innerHTML = '<i class="fa fa-check mr-2"></i>已保存并复制';
+                        } else {
+                            this.innerHTML = '<i class="fa fa-check mr-2"></i>已保存';
+                        }
+                        this.classList.add('bg-green-600');
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.classList.remove('bg-green-600');
+                            closeModal();
+                        }, 1000);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

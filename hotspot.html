@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频热点榜 - 新媒体运营中心</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 统一的 Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3D5A80',
+            secondary: '#6B7280',
+            light: '#F3F4F6',
+            dark: '#1F2937',
+            douyin: '#FE2C55'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <!-- 移动端导航 -->
+      <div class="md:hidden flex justify-between items-center py-3">
+        <h1 class="text-xl font-bold text-primary">枕朵新媒体</h1>
+        <button id="menu-toggle" class="text-gray-600 hover:text-primary focus:outline-none">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+      
+      <!-- 移动端菜单 -->
+      <div id="mobile-menu" class="md:hidden hidden pb-3">
+        <div class="grid grid-cols-3 gap-2">
+          <a href="index.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-home text-xl mb-1"></i>
+            <span class="text-sm">首页</span>
+          </a>
+          <a href="hotspot.html" class="flex flex-col items-center justify-center py-3 text-douyin hover:bg-gray-50 rounded-md font-medium transition-all">
+            <i class="fa fa-fire text-xl mb-1"></i>
+            <span class="text-sm">视频热点榜</span>
+          </a>
+          <a href="materials.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-picture-o text-xl mb-1"></i>
+            <span class="text-sm">素材资源</span>
+          </a>
+          <a href="admin.html" class="flex flex-col items-center justify-center py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-cog text-xl mb-1"></i>
+            <span class="text-sm">管理中心</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 桌面端导航 -->
+      <div class="hidden md:flex justify-between items-center py-4">
+        <div class="flex items-center space-x-2">
+          <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-10 w-10">
+          <span class="text-xl font-bold text-primary">枕朵新媒体运营中心</span>
+        </div>
+        
+        <div class="flex items-center space-x-8">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-home mr-1"></i> 首页
+          </a>
+          <a href="hotspot.html" class="text-douyin hover:text-douyin font-medium transition-all">
+            <i class="fa fa-fire mr-1"></i> 视频热点榜
+          </a>
+          <a href="admin.html" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-cog mr-1"></i> 管理中心
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- 页面标题 -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-douyin mb-2">视频热点榜</h1>
+      <p class="text-gray-600">精选抖音热门话题内容，每周更新</p>
+    </div>
+    
+    <!-- 筛选和排序 -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+      <div class="flex flex-col gap-4">
+        <div>
+          <label for="categoryFilter" class="block text-sm font-medium text-gray-700 mb-1">分类筛选</label>
+          <select id="categoryFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+            <option value="">全部分类</option>
+            <option value="家纺类">家纺类</option>
+            <option value="家居类">家居类</option>
+            <option value="IP类">IP类</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="flex justify-between items-center">
+          <div class="w-full md:w-auto md:mr-4">
+            <label for="sortBy" class="block text-sm font-medium text-gray-700 mb-1">排序方式</label>
+            <select id="sortBy" class="w-full md:w-48 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+              <option value="publishTime">最新发布</option>
+              <option value="likeCount">最多点赞</option>
+              <option value="commentCount">最多评论</option>
+              <option value="shareCount">最多分享</option>
+            </select>
+          </div>
+          <div class="text-sm text-gray-500 md:mt-0">
+            <span id="totalCount" class="font-medium">0</span> 条内容
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 加载状态 -->
+    <div id="loadingState" class="py-12 text-center">
+      <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-douyin"></div>
+      <p class="mt-3 text-gray-600">加载中...</p>
+    </div>
+    
+    <!-- 空状态 -->
+    <div id="emptyState" class="hidden py-12 text-center">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+        <i class="fa fa-folder-open text-gray-400 text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-medium text-gray-900 mb-1">暂无热点数据</h3>
+      <p class="text-gray-500 mb-6">管理员尚未添加热点内容</p>
+      <a href="admin.html" class="bg-douyin text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all inline-flex items-center">
+        <i class="fa fa-plus mr-2"></i> 去添加热点
+      </a>
+    </div>
+    
+    <!-- 热点列表 -->
+    <div id="hotspotList" class="space-y-6">
+      <!-- 热点内容将通过JavaScript动态填充 -->
+    </div>
+    
+    <!-- 加载更多按钮 -->
+    <div class="mt-8 text-center">
+      <button id="loadMoreBtn" class="bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50 transition-all hidden">
+        加载更多 <i class="fa fa-angle-down ml-1"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <div class="flex items-center space-x-2">
+            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-8 w-8">
+            <span class="text-lg font-bold text-primary">新媒体运营中心</span>
+          </div>
+          <p class="text-gray-500 text-sm mt-1">枕朵专业全域流量赋能家纺、家具店</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="text-gray-500 text-sm">© 2025 新媒体运营中心. 保留所有权利.</p>
+          <p class="text-gray-400 text-xs mt-1">数据来源：本地管理系统</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 引入数据管理和展示脚本 -->
+  <script src="js/hotspot-manager.js"></script>
+  <script src="js/hotspot-script.js"></script>
+  
+  <script>
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

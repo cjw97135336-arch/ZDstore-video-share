@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>枕朵介绍 - 新媒体运营中心</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 统一的 Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3D5A80',
+            secondary: '#6B7280',
+            light: '#F3F4F6',
+            dark: '#1F2937',
+            'zhenduo-blue': '#E6F0FF',
+            'zhenduo-green': '#E6FFF2',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.5s ease-in-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+          },
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.03);
+      }
+      .section-padding {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+      .section-title {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 2.5rem;
+        font-weight: 700;
+        font-size: 2.25rem;
+        line-height: 1.2;
+      }
+      .section-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 60px;
+        height: 4px;
+        background-color: #3D5A80;
+        border-radius: 2px;
+      }
+      .section-title.centered::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #E6F0FF 0%, #F3F4F6 100%);
+      }
+      .bg-gradient-green {
+        background: linear-gradient(135deg, #E6FFF2 0%, #F3F4F6 100%);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <!-- 移动端导航 -->
+      <div class="md:hidden flex justify-between items-center py-3">
+        <h1 class="text-xl font-bold text-primary">枕朵新媒体赋能平台</h1>
+        <button id="menu-toggle" class="text-gray-600 hover:text-primary focus:outline-none">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+      
+      <!-- 移动端菜单 -->
+      <div id="mobile-menu" class="md:hidden hidden pb-3">
+        <div class="grid grid-cols-3 gap-2">
+          <a href="index.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-home text-xl mb-1"></i>
+            <span class="text-sm">首页</span>
+          </a>
+          <a href="about.html" class="flex flex-col items-center justify-center py-3 text-primary hover:bg-gray-50 rounded-md font-medium transition-all">
+            <i class="fa fa-info-circle text-xl mb-1"></i>
+            <span class="text-sm">枕朵介绍</span>
+          </a>
+          <a href="hotspot.html" class="flex flex-col items-center justify-center py-3 text-gray-600 hover:bg-gray-50 rounded-md transition-all">
+            <i class="fa fa-fire text-xl mb-1"></i>
+            <span class="text-sm">视频热点榜</span>
+          </a>
+          <a href="admin.html" class="flex flex-col items-center justify-center py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-cog text-xl mb-1"></i>
+            <span class="text-sm">管理中心</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 桌面端导航 -->
+      <div class="hidden md:flex justify-between items-center py-4">
+        <div class="flex items-center space-x-2">
+          <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-10 w-10">
+          <span class="text-xl font-bold text-primary">枕朵新媒体运营中心</span>
+        </div>
+        
+        <div class="flex items-center space-x-8">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-home mr-1"></i> 首页
+          </a>
+          <a href="about.html" class="text-primary hover:text-primary font-medium transition-all">
+            <i class="fa fa-info-circle mr-1"></i> 枕朵介绍
+          </a>
+          <a href="hotspot.html" class="text-gray-600 hover:text-primary transition-all">
+            <i class="fa fa-fire mr-1"></i> 视频热点榜
+          </a>
+          <a href="admin.html" class="bg-primary text-white px-4 py-2 rounded-md-md hover:bg-opacity-90 transition-all">
+            <i class="fa fa-cog mr-1"></i> 管理中心
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <main>
+    <!-- 品牌宣传片区域 -->
+    <section class="bg-gradient-blue section-padding">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-10">
+          <h2 class="section-title centered">品牌宣传片</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">通过视频了解枕朵品牌故事、产品理念和九大定制方案，探索我们如何为您打造完美睡眠体验。</p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+          <div class="relative mb-8 rounded-lg overflow-hidden shadow-lg bg-black">
+            <div id="video-container" class="relative w-full">
+              <!-- 视频播放器 - 使用腾讯视频官方嵌入代码 -->
+              <iframe id="video-player" src="https://v.qq.com/iframe/player.html?vid=t3176kguor2&auto=0&width=auto&height=auto" 
+                      class="w-full h-full" 
+                      style="aspect-ratio: 16/9; max-height: 70vh;"
+                      allowFullScreen="true"
+                      frameborder="0"></iframe>
+              
+              <!-- 视频备用方案 - 封面图和链接按钮 -->
+              <div id="video-fallback" class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80">
+                <div class="text-center p-6 max-w-md">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-opacity-100 transition-all" id="play-fallback-btn">
+                    <i class="fa fa-play text-white text-2xl sm:text-3xl ml-1"></i>
+                  </div>
+                  <h3 class="text-white text-lg sm:text-xl font-bold mb-2">枕朵宣传片</h3>
+                  <p class="text-gray-300 text-sm sm:text-base mb-4">点击播放按钮观看视频，或直接打开腾讯视频链接</p>
+                  <div class="flex flex-col justify-center gap-3">
+                    <a href="https://v.qq.com/x/page/t3176kguor2.html" target="_blank" class="inline-flex items-center justify-center bg-primary text-white px-4 py-2 text-sm sm:px-6 sm:py-2 rounded-md hover:bg-opacity-90 transition-all">
+                      <i class="fa fa-external-link mr-2"></i> 打开腾讯视频观看
+                    </a>
+                    <button id="try-embed-btn" class="inline-flex items-center justify-center bg-white text-primary px-4 py-2 text-sm sm:px-6 sm:py-2 rounded-md hover:bg-gray-100 transition-all">
+                      <i class="fa fa-refresh mr-2"></i> 尝试嵌入播放
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-bold mb-4 text-primary">关于枕朵</h3>
+            <p class="text-gray-600 mb-4">枕朵创立于2025年，隶属于佛山吉意米科技有限公司。作为吉意米的核心战略品牌，我们始终聚焦国人睡眠健康，深度洞察不同用户的个性化需求，致力于将以往专供全球市场的优质枕头产品引入国内，切实解决国人选枕用枕困扰。</p>
+            <p class="text-gray-600">我们依托国人人体工学数据，推出了九大定制方案，为中国家庭提供轻定制睡眠体验的"枕朵"解决方案。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 品牌故事区域 -->
+    <section id="brand-story" class="section-padding">
+      <div class="container mx-auto px-4">
+        <h2 class="section-title centered text-center">品牌故事</h2>
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <div class="mb-6">
+            <h3 class="text-2xl font-bold mb-4 text-primary">枕朵品牌介绍</h3>
+            <p class="text-gray-600 mb-4">枕朵创立于2025年，隶属于佛山吉意米科技有限公司。其作为吉意米的核心战略品牌，始终聚焦国人睡眠健康，深度洞察不同用户的个性化需求，致力于将以往专供全球市场的优质枕头产品引入国内，切实解决国人选枕用枕困扰。</p>
+            <p class="text-gray-600 mb-4">经深度调研发现，因年龄、性别、职业、生活习惯等差异，用户对枕头的需求千差万别。为此，枕朵以高品质为基石进军国内市场，依托国人人体工学数据，推出了九大定制方案。为中国家庭享受到轻定制睡眠体验提供"枕朵"解决方案。</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-xl font-bold mb-3 flex items-center">
+                <i class="fa fa-quote-left text-primary mr-2"></i>
+                品牌Slogan
+              </h4>
+              <p class="text-gray-700 text-lg font-medium">9大方案，定制您的好枕头</p>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-xl font-bold mb-3 flex items-center">
+                <i class="fa fa-star text-primary mr-2"></i>
+                品牌定位
+              </h4>
+              <p class="text-gray-700">一款为美好睡眠量身定制的云朵枕</p>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-xl font-bold mb-3 flex items-center">
+                <i class="fa fa-bullseye text-primary mr-2"></i>
+                品牌主张
+              </h4>
+              <p class="text-gray-700">为不同年龄段、不同睡眠需求的人群，提供符合人体工程学的睡眠解决方案。</p>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-xl font-bold mb-3 flex items-center">
+                <i class="fa fa-heart text-primary mr-2"></i>
+                品牌个性
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">简约</span>
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">个性</span>
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">品质</span>
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">舒适</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- 公司背景区域 -->
+    <section id="company" class="bg-gradient-blue section-padding">
+      <div class="container mx-auto px-4">
+        <h2 class="section-title centered text-center">公司背景</h2>
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-primary">佛山吉意米科技有限公司</h3>
+            <p class="text-gray-600 mb-4">佛山吉意米科技有限公司，成立于2012年，专业从事记忆棉产品的设计、生产和国内外销售贸易，累计为全球超2000万位用户提供了优质的睡眠产品。其中在亚马逊枕头类目TOP10卖家的产品里，有30%的货品均源自我们公司。</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-xl font-bold mb-3 flex items-center">
+                <i class="fa fa-certificate text-primary mr-2"></i>
+                权威认证
+              </h4>
+              <ul class="text-gray-700 space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>OEKO TEX（国际环保纺织协会）认证</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>RoHS（欧盟有害物质限制指令）认证</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>AZO（纺织品偶氮测试）认证</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-xl font-bold mb-3 flex items-center">
+                <i class="fa fa-lightbulb-o text-primary mr-2"></i>
+                技术优势
+              </h4>
+              <ul class="text-gray-700 space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>多项外观及实用新型专利</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>CFC全水发泡技术处于行业领先地位</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>产品以高品质、舒适、无味而著称</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-xl font-bold mb-3 flex items-center">
+                <i class="fa fa-cubes text-primary mr-2"></i>
+                产品应用领域
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">睡眠枕</span>
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">汽车旅行</span>
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">办公学习</span>
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">家居休闲</span>
+                <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">母婴护理</span>
+              </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-xl font-bold mb-3 flex items-center">
+                <i class="fa fa-building text-primary mr-2"></i>
+                生产规模
+              </h4>
+              <ul class="text-gray-700 space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>建筑面积5000平方米</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>办公面积500余平方米</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>仓储面积2000余平方米</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>生产面积2000余平方米</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 产品介绍区域 -->
+    <section id="products" class="section-padding">
+      <div class="container mx-auto px-4">
+        <h2 class="section-title centered text-center">产品介绍</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- 产品1 -->
+          <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale">
+            <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b1350cd4e35a4964981c15b6dc948b6b.png~tplv-a9rns2rl98-24:720:720.png?rcl=2025102117323905620E9F8EE6129D1BDA&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761643959&x-signature=5T96L8XsgPDJUs9yvCle2BqND0o%3D" alt="护颈舒睡枕S" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">护颈舒睡枕S</h3>
+              <p class="text-gray-600 mb-4">枕芯采用一体成型工艺，贴合头部、颈部、肩部曲线，舒适承托。枕套夹层采用4D硅胶层，百万立体透气孔，告别闷热；纯棉面料柔软亲肤，抗菌防螨。</p>
+            </div>
+          </div>
+          
+          <!-- 产品2 -->
+          <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale">
+            <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/1b53738cb6a048338359f2bbdfe061f4.png~tplv-a9rns2rl98-24:720:720.png?rcl=2025102117323905620E9F8EE6129D1BDA&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761643959&x-signature=JHCq7xCW4OO5kBVWNrg%2FbAmd0U0%3D" alt="云愈深睡宽枕" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">云愈深睡宽枕</h3>
+              <p class="text-gray-600 mb-4">枕芯采用一体成型工艺，温柔包裹头部，助眠深睡。枕套夹层采用4D硅胶层，百万立体透气孔，告别闷热；纯棉面料柔软亲肤，抗菌防螨。</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 九大定制方案简介 -->
+        <div class="mt-12 bg-white p-8 rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold mb-6 text-center text-primary">九大定制方案</h3>
+          <p class="text-gray-600 mb-6 text-center">基于国人人体工学数据，我们为不同需求的用户提供九大定制方案，让每个人都能找到最适合自己的枕头。</p>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <div class="flex items-center space-x-2">
+            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/4942a047070f43c9989577d24fe95692.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251021173658BDC366F1C82CEE98475E&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761644218&x-signature=4MpM3mLqTz%2BjExJY%2BT526L%2B%2FPvM%3D" alt="Logo" class="h-8 w-8">
+            <span class="text-lg font-bold text-primary">枕朵新媒体运营中心</span>
+          </div>
+          <p class="text-gray-500 text-sm mt-1">枕朵专业全域流量赋能记忆枕源头工厂</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="text-gray-500 text-sm">© 2025 枕朵新媒体运营中心. 保留所有权利.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // 如果是移动端，点击后关闭菜单
+          const mobileMenu = document.getElementById('mobile-menu');
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
+    });
+    
+    // 视频播放器功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const videoContainer = document.getElementById('video-container');
+      const videoPlayer = document.getElementById('video-player');
+      const videoFallback = document.getElementById('video-fallback');
+      const playFallbackBtn = document.getElementById('play-fallback-btn');
+      const tryEmbedBtn = document.getElementById('try-embed-btn');
+      
+      // 备用方案播放按钮
+      playFallbackBtn.addEventListener('click', function() {
+        window.open('https://v.qq.com/x/page/t3176kguor2.html', '_blank');
+      });
+      
+      // 尝试嵌入播放按钮
+      tryEmbedBtn.addEventListener('click', function() {
+        // 隐藏备用方案，显示视频播放器
+        videoFallback.classList.add('hidden');
+        
+        // 重新加载视频
+        videoPlayer.src = 'https://v.qq.com/iframe/player.html?vid=t3176kguor2&auto=1&width=auto&height=auto';
+        
+        // 3秒后检查是否加载成功
+        setTimeout(() => {
+          try {
+            // 如果iframe内容高度很小，可能表示加载失败
+            if (videoPlayer.offsetHeight < 100) {
+              throw new Error('视频加载失败');
+            }
+          } catch (e) {
+            // 显示备用方案
+            videoFallback.classList.remove('hidden');
+            alert('视频嵌入播放失败，请尝试直接打开腾讯视频链接观看。');
+          }
+        }, 3000);
+      });
+      
+      // 检查视频是否加载成功
+      function checkVideoLoaded() {
+        try {
+          // 如果iframe内容高度很小，可能表示加载失败
+          if (videoPlayer.offsetHeight < 100) {
+            throw new Error('视频加载失败');
+          }
+        } catch (e) {
+          // 显示备用方案
+          videoFallback.classList.remove('hidden');
+        }
+      }
+      
+      // 初始检查
+      setTimeout(checkVideoLoaded, 2000);
+    });
+  </script>
+</body>
+</html>
