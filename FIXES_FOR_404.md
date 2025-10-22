@@ -2,39 +2,28 @@
 
 基于对您网站代码的检查，我发现了几个可能导致404错误的问题，并提供了具体的修复方案。
 
-## 问题1：导航菜单文本与实际功能不符
+## 问题1：已修复 - 导航菜单文本与实际功能不符
 
 **问题描述：**
-导航菜单中显示"素材资源"，但该页面实际上是"文案选题"功能页面。虽然文件名仍然是`materials.html`，但文本不一致可能导致用户困惑。
+已修复。原问题是导航菜单中显示"素材资源"，但该页面实际上是"文案选题"功能页面。
 
-**修复方案：**
+**修复内容：**
+已将所有页面中的"素材资源"文本更新为"文案选题"，并将图标从`fa-picture-o`（图片图标）更新为`fa-file-text-o`（文件文本图标）。
 
-1. 打开`index.html`文件
-2. 找到移动端导航菜单部分：
-   ```html
-   <a href="materials.html" class="flex flex flex-col items-center justify-center py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
-     <i class="fa fa-picture-o text-xl mb-1"></i>
-     <span class="text-sm">素材资源</span>
-   </a>
-   ```
-3. 将"素材资源"改为"文案选题"：
+**修复后的代码：**
+
+1. 移动端导航菜单：
    ```html
    <a href="materials.html" class="flex flex-col items-center justify-center py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all">
-     <i class="fa fa-file-text text-xl mb-1"></i>
+     <i class="fa fa-file-text-o text-xl mb-1"></i>
      <span class="text-sm">文案选题</span>
    </a>
    ```
 
-4. 找到桌面端导航菜单部分：
+2. 桌面端导航菜单：
    ```html
    <a href="materials.html" class="text-primary hover:text-primary font-medium transition-all">
-     <i class="fa fa-picture-o mr-1"></i> 素材资源
-   </a>
-   ```
-5. 将"素材资源"改为"文案选题"：
-   ```html
-   <a href="materials.html" class="text-primary hover:text-primary font-medium transition-all">
-     <i class="fa fa-file-text mr-1"></i> 文案选题
+     <i class="fa fa-file-text-o mr-1"></i> 文案选题
    </a>
    ```
 

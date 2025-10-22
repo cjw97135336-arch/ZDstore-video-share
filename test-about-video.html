@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频播放测试页面</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3D5A80',
+            secondary: '#6B7280',
+            light: '#F3F4F6',
+            dark: '#1F2937',
+            douyin: '#FE2C55'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.5s ease-in-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+          },
+        }
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #3D5A80 0%, #98C1D9 100%);
+      }
+      .section-padding {
+        padding: 6rem 0;
+      }
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #3D5A80;
+        margin-bottom: 1.5rem;
+      }
+      .section-title.centered {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo - 桌面端显示 -->
+        <div class="hidden md:flex items-center">
+          <span class="text-2xl font-bold text-primary">枕朵新媒体赋能平台</span>
+        </div>
+        
+        <!-- 移动端Logo -->
+        <div class="md:hidden text-center">
+          <span class="text-xl font-bold text-primary">枕朵新媒体赋能平台</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <main>
+    <!-- 测试说明 -->
+    <section class="bg-white py-8">
+      <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold text-center text-primary mb-6">视频播放功能测试</h1>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md max-w-3xl mx-auto">
+          <h2 class="text-xl font-bold mb-4">测试说明</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>此页面用于测试移动端视频播放功能</li>
+            <li>在移动设备上，点击播放按钮应直接跳转到腾讯视频</li>
+            <li>在桌面设备上，会尝试嵌入播放</li>
+            <li>如果嵌入播放失败，会显示备用方案</li>
+          </ul>
+          <div class="mt-4 p-4 bg-blue-50 rounded-md">
+            <p class="text-sm text-gray-600">
+              <strong>当前设备检测结果：</strong>
+              <span id="device-detection" class="font-medium"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 视频播放测试区域 -->
+    <section class="bg-gradient-blue py-12">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="relative mb-8 rounded-lg overflow-hidden shadow-lg bg-black">
+            <div id="video-container" class="relative w-full">
+              <!-- 视频播放器 - 使用腾讯视频官方嵌入代码 -->
+              <iframe id="video-player" src="https://v.qq.com/iframe/player.html?vid=t3176kguor2&auto=0&width=auto&height=auto" 
+                      class="w-full h-full" 
+                      style="aspect-ratio: 16/9; max-height: 70vh;"
+                      allowFullScreen="true"
+                      frameborder="0"></iframe>
+              
+              <!-- 视频备用方案 - 封面图和链接按钮 -->
+              <div id="video-fallback" class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80">
+                <div class="text-center p-6 max-w-md w-full">
+                  <!-- 移动端优化：更大的播放按钮 -->
+                  <div class="w-20 h-20 sm:w-24 sm:h-24 bg-primary bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer hover:bg-opacity-100 transition-all" id="play-fallback-btn">
+                    <i class="fa fa-play text-white text-3xl sm:text-4xl ml-1"></i>
+                  </div>
+                  <h3 class="text-white text-xl sm:text-2xl font-bold mb-3">枕朵宣传片</h3>
+                  <p class="text-gray-300 text-base sm:text-lg mb-6">点击播放按钮观看视频</p>
+                  <div class="flex flex-col justify-center gap-4">
+                    <!-- 移动端优化：更大的按钮和更明确的文字 -->
+                    <a href="https://v.qq.com/x/page/t3176kguor2.html" target="_blank" class="inline-flex items-center justify-center bg-primary text-white px-6 py-3 text-base sm:px-8 sm:py-3 rounded-md hover:bg-opacity-90 transition-all w-full">
+                      <i class="fa fa-external-link mr-2"></i> 立即观看视频
+                    </a>
+                    <button id="try-embed-btn" class="inline-flex items-center justify-center bg-white text-primary px-6 py-3 text-base sm:px-8 sm:py-3 rounded-md hover:bg-gray-100 transition-all w-full">
+                      <i class="fa fa-refresh mr-2"></i> 尝试在页面内播放
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 测试结果 -->
+    <section class="bg-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-2xl font-bold text-center text-primary mb-6">测试结果</h2>
+          <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-bold mb-4">预期行为</h3>
+            <div class="space-y-4">
+              <div class="p-4 bg-blue-50 rounded-md">
+                <h4 class="font-bold text-blue-700">在移动设备上：</h4>
+                <ul class="list-disc pl-5 mt-2 text-gray-700">
+                  <li>页面加载后应直接显示备用方案（播放按钮和链接）</li>
+                  <li>点击播放按钮应直接跳转到腾讯视频页面</li>
+                  <li>点击"尝试在页面内播放"按钮也应直接跳转到腾讯视频页面</li>
+                </ul>
+              </div>
+              
+              <div class="p-4 bg-green-50 rounded-md">
+                <h4 class="font-bold text-green-700">在桌面设备上：</h4>
+                <ul class="list-disc pl-5 mt-2 text-gray-700">
+                  <li>页面加载后会尝试嵌入播放视频</li>
+                  <li>如果嵌入失败，会显示备用方案</li>
+                  <li>点击播放按钮会在新窗口打开腾讯视频</li>
+                  <li>点击"尝试在页面内播放"按钮会重新尝试嵌入播放</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 枕朵新媒体赋能平台 - 测试页面</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 视频播放器功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const videoContainer = document.getElementById('video-container');
+      const videoPlayer = document.getElementById('video-player');
+      const videoFallback = document.getElementById('video-fallback');
+      const playFallbackBtn = document.getElementById('play-fallback-btn');
+      const tryEmbedBtn = document.getElementById('try-embed-btn');
+      const deviceDetection = document.getElementById('device-detection');
+      
+      // 检测是否为移动设备
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      
+      // 显示设备检测结果
+      deviceDetection.textContent = isMobile ? '移动设备' : '桌面设备';
+      deviceDetection.className = isMobile ? 'font-medium text-blue-600' : 'font-medium text-green-600';
+      
+      // 备用方案播放按钮 - 移动端优化
+      playFallbackBtn.addEventListener('click', function() {
+        console.log('播放按钮点击 - 移动端:', isMobile);
+        // 移动端直接跳转，不尝试嵌入播放
+        if (isMobile) {
+          window.location.href = 'https://v.qq.com/x/page/t3176kguor2.html';
+        } else {
+          window.open('https://v.qq.com/x/page/t3176kguor2.html', '_blank');
+        }
+      });
+      
+      // 尝试嵌入播放按钮 - 移动端优化
+      tryEmbedBtn.addEventListener('click', function() {
+        console.log('尝试嵌入播放按钮点击 - 移动端:', isMobile);
+        // 移动端直接跳转，不尝试嵌入播放
+        if (isMobile) {
+          window.location.href = 'https://v.qq.com/x/page/t3176kguor2.html';
+          return;
+        }
+        
+        // 隐藏备用方案，显示视频播放器
+        videoFallback.classList.add('hidden');
+        
+        // 重新加载视频
+        videoPlayer.src = 'https://v.qq.com/iframe/player.html?vid=t3176kguor2&auto=1&width=auto&height=auto';
+        
+        // 3秒后检查是否加载成功
+        setTimeout(() => {
+          try {
+            // 如果iframe内容高度很小，可能表示加载失败
+            if (videoPlayer.offsetHeight < 100) {
+              throw new Error('视频加载失败');
+            }
+          } catch (e) {
+            // 显示备用方案
+            videoFallback.classList.remove('hidden');
+            alert('视频嵌入播放失败，请尝试直接打开腾讯视频链接观看。');
+          }
+        }, 3000);
+      });
+      
+      // 检查视频是否加载成功
+      function checkVideoLoaded() {
+        try {
+          console.log('检查视频加载状态，高度:', videoPlayer.offsetHeight);
+          // 如果iframe内容高度很小，可能表示加载失败
+          if (videoPlayer.offsetHeight < 100) {
+            throw new Error('视频加载失败');
+          }
+        } catch (e) {
+          console.log('视频加载失败:', e.message);
+          // 显示备用方案
+          videoFallback.classList.remove('hidden');
+        }
+      }
+      
+      // 移动端优化：直接显示备用方案，不尝试嵌入播放
+      if (isMobile) {
+        console.log('移动端检测：直接显示备用方案');
+        videoFallback.classList.remove('hidden');
+      } else {
+        // 初始检查
+        setTimeout(checkVideoLoaded, 2000);
+      }
+    });
+  </script>
+</body>
+</html>

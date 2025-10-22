@@ -174,18 +174,20 @@
               
               <!-- 视频备用方案 - 封面图和链接按钮 -->
               <div id="video-fallback" class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80">
-                <div class="text-center p-6 max-w-md">
-                  <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-opacity-100 transition-all" id="play-fallback-btn">
-                    <i class="fa fa-play text-white text-2xl sm:text-3xl ml-1"></i>
+                <div class="text-center p-6 max-w-md w-full">
+                  <!-- 移动端优化：更大的播放按钮 -->
+                  <div class="w-20 h-20 sm:w-24 sm:h-24 bg-primary bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer hover:bg-opacity-100 transition-all" id="play-fallback-btn">
+                    <i class="fa fa-play text-white text-3xl sm:text-4xl ml-1"></i>
                   </div>
-                  <h3 class="text-white text-lg sm:text-xl font-bold mb-2">枕朵宣传片</h3>
-                  <p class="text-gray-300 text-sm sm:text-base mb-4">点击播放按钮观看视频，或直接打开腾讯视频链接</p>
-                  <div class="flex flex-col justify-center gap-3">
-                    <a href="https://v.qq.com/x/page/t3176kguor2.html" target="_blank" class="inline-flex items-center justify-center bg-primary text-white px-4 py-2 text-sm sm:px-6 sm:py-2 rounded-md hover:bg-opacity-90 transition-all">
-                      <i class="fa fa-external-link mr-2"></i> 打开腾讯视频观看
+                  <h3 class="text-white text-xl sm:text-2xl font-bold mb-3">枕朵宣传片</h3>
+                  <p class="text-gray-300 text-base sm:text-lg mb-6">点击播放按钮观看视频</p>
+                  <div class="flex flex-col justify-center gap-4">
+                    <!-- 移动端优化：更大的按钮和更明确的文字 -->
+                    <a href="https://v.qq.com/x/page/t3176kguor2.html" target="_blank" class="inline-flex items-center justify-center bg-primary text-white px-6 py-3 text-base sm:px-8 sm:py-3 rounded-md hover:bg-opacity-90 transition-all w-full">
+                      <i class="fa fa-external-link mr-2"></i> 立即观看视频
                     </a>
-                    <button id="try-embed-btn" class="inline-flex items-center justify-center bg-white text-primary px-4 py-2 text-sm sm:px-6 sm:py-2 rounded-md hover:bg-gray-100 transition-all">
-                      <i class="fa fa-refresh mr-2"></i> 尝试嵌入播放
+                    <button id="try-embed-btn" class="inline-flex items-center justify-center bg-white text-primary px-6 py-3 text-base sm:px-8 sm:py-3 rounded-md hover:bg-gray-100 transition-all w-full">
+                      <i class="fa fa-refresh mr-2"></i> 尝试在页面内播放
                     </button>
                   </div>
                 </div>
@@ -445,13 +447,27 @@
       const playFallbackBtn = document.getElementById('play-fallback-btn');
       const tryEmbedBtn = document.getElementById('try-embed-btn');
       
-      // 备用方案播放按钮
+      // 检测是否为移动设备
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      
+      // 备用方案播放按钮 - 移动端优化
       playFallbackBtn.addEventListener('click', function() {
-        window.open('https://v.qq.com/x/page/t3176kguor2.html', '_blank');
+        // 移动端直接跳转，不尝试嵌入播放
+        if (isMobile) {
+          window.location.href = 'https://v.qq.com/x/page/t3176kguor2.html';
+        } else {
+          window.open('https://v.qq.com/x/page/t3176kguor2.html', '_blank');
+        }
       });
       
-      // 尝试嵌入播放按钮
+      // 尝试嵌入播放按钮 - 移动端优化
       tryEmbedBtn.addEventListener('click', function() {
+        // 移动端直接跳转，不尝试嵌入播放
+        if (isMobile) {
+          window.location.href = 'https://v.qq.com/x/page/t3176kguor2.html';
+          return;
+        }
+        
         // 隐藏备用方案，显示视频播放器
         videoFallback.classList.add('hidden');
         
@@ -486,8 +502,14 @@
         }
       }
       
-      // 初始检查
-      setTimeout(checkVideoLoaded, 2000);
+      // 移动端优化：直接显示备用方案，不尝试嵌入播放
+      if (isMobile) {
+        console.log('移动端检测：直接显示备用方案');
+        videoFallback.classList.remove('hidden');
+      } else {
+        // 初始检查
+        setTimeout(checkVideoLoaded, 2000);
+      }
     });
   </script>
 </body>

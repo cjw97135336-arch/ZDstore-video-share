@@ -29,8 +29,8 @@ const pages = [
 const expectedNavLinks = [
   { text: '首页', target: 'index.html' },
   { text: '枕朵介绍', target: 'about.html' },
-  { text: '视频朵热点榜', target: 'hotspot.html' },
-  { text: '素材资源', target: 'materials.html' }, // 注意：文本显示为"素材资源"但实际文件名为"materials.html"
+  { text: '视频热点榜', target: 'hotspot.html' },
+  { text: '文案选题', target: 'materials.html' }, // 文本显示为"文案选题"，对应文件名为"materials.html"
   { text: '管理中心', target: 'admin.html' }
 ];
 
@@ -83,16 +83,16 @@ function checkLinks() {
   console.log('=== 特殊检查 ===');
   console.log('----------------------------------------');
   
-  // 检查"素材资源"是否正确指向"materials.html"
-  console.log('检查"素材资源"链接是否正确...');
+  // 检查"文案选题"是否正确指向"materials.html"
+  console.log('检查"文案选题"链接是否正确...');
   const materialsLinkCorrect = true; // 假设正确
   if (materialsLinkCorrect) {
-    console.log('✓ "素材资源"正确指向"materials.html"');
+    console.log('✓ "文案选题"正确指向"materials.html"');
   } else {
-    console.log('✗ "素材资源"链接存在问题');
+    console.log('✗ "文案选题"链接存在问题');
     results.issues.push({
       page: '所有页面',
-      link: '素材资源',
+      link: '文案选题',
       target: 'materials.html',
       issue: '链接文本与文件名不一致，可能导致混淆'
     });
@@ -143,11 +143,9 @@ function generateFixSuggestions() {
   
   // 基于检查结果生成修复建议
   if (results.issues.length > 0) {
-    console.log('1. 确保导航菜单中的"素材资源"文本改为"文案选题"，保持与页面功能一致：');
-    console.log('   原代码: <span class="text-sm">素材资源</span>');
-    console.log('   建议改为: <span class="text-sm">文案选题</span>');
-    console.log('   原代码: <i class="fa fa-picture-o mr-1"></i> 素材资源');
-    console.log('   建议改为: <i class="fa fa-file-text mr-1"></i> 文案选题');
+    console.log('1. 确保导航菜单中的"文案选题"使用正确的图标：');
+    console.log('   正确代码: <span class="text-sm">文案选题</span>');
+    console.log('   正确代码: <i class="fa fa-file-text-o mr-1"></i> 文案选题');
     console.log();
     
     console.log('2. 考虑将外部图片URL替换为本地图片资源，避免依赖外部链接：');
