@@ -15,6 +15,8 @@
           colors: {
             primary: '#4263EB',
             secondary: '#E8EEFF',
+            xhs: '#FE2C55',      // 小红书红色
+            kuaishou: '#00C65E'  // 快手绿色
           },
         },
       }
@@ -113,9 +115,9 @@
           </div>
         </div>
         
-        <!-- 下载按钮组（保留2个下载项） -->
+        <!-- 下载按钮组（已更新下载地址） -->
         <div class="grid grid-cols-1 gap-3">
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
+          <a href="https://103.140.228.35:10241/down/e1VyNMPWuxDG.mp4" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
             <div class="flex items-center">
               <i class="fa fa-video-camera mr-3 text-lg"></i>
               <div>
@@ -125,7 +127,7 @@
             </div>
             <i class="fa fa-download"></i>
           </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
+          <a href="https://103.140.228.35:10241/down/e1VyNMPWuxDG.mp4" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
             <div class="flex items-center">
               <i class="fa fa-video-camera mr-3 text-lg"></i>
               <div>
@@ -159,9 +161,9 @@
           </div>
         </div>
         
-        <!-- 下载按钮组（仅保留2项） -->
+        <!-- 下载按钮组（已更新下载地址） -->
         <div class="grid grid-cols-1 gap-3">
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
+          <a href="https://103.140.228.35:10241/down/e1VyNMPWuxDG.mp4" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
             <div class="flex items-center">
               <i class="fa fa-image mr-3 text-lg"></i>
               <div>
@@ -171,7 +173,7 @@
             </div>
             <i class="fa fa-download"></i>
           </a>
-          <a href="https://cowtransfer.com/s/5398dc242c344a" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
+          <a href="https://103.140.228.35:10241/down/e1VyNMPWuxDG.mp4" target="_blank" class="btn-hover flex items-center justify-between bg-secondary text-primary py-3 px-4 rounded-lg">
             <div class="flex items-center">
               <i class="fa fa-cube mr-3 text-lg"></i>
               <div>
@@ -185,10 +187,18 @@
       </div>
     </div>
 
-    <!-- 抖音发布按钮 -->
-    <button id="douyin-btn" class="w-full bg-primary text-white py-3 rounded-xl font-medium flex items-center justify-center shadow-md btn-hover">
-      <i class="fa fa-share-alt mr-2"></i>一键发布到抖音
-    </button>
+    <!-- 社交媒体发布按钮组 -->
+    <div class="grid grid-cols-3 gap-3 mb-6">
+      <button id="douyin-btn" class="bg-primary text-white py-3 rounded-xl font-medium flex items-center justify-center shadow-md btn-hover">
+        <i class="fa fa-music mr-2"></i>抖音发布
+      </button>
+      <button id="xiaohongshu-btn" class="bg-xhs text-white py-3 rounded-xl font-medium flex items-center justify-center shadow-md btn-hover">
+        <i class="fa fa-book mr-2"></i>小红书发布
+      </button>
+      <button id="kuaishou-btn" class="bg-kuaishou text-white py-3 rounded-xl font-medium flex items-center justify-center shadow-md btn-hover">
+        <i class="fa fa-play-circle mr-2"></i>快手发布
+      </button>
+    </div>
 
     <!-- 操作指引 -->
     <div class="text-center text-gray-500 text-xs mt-6">
@@ -282,17 +292,44 @@
       });
     });
 
-    // 7. 抖音跳转功能
-    document.getElementById('douyin-btn').addEventListener('click', () => {
+    // 7. 社交媒体跳转功能
+    function openSocialApp(scheme, name) {
       const defaultText = document.getElementById('copy-text-1').textContent;
-      const douyinUrl = `snssdk1128://create/video?title=${encodeURIComponent(defaultText)}`;
+      const encodedText = encodeURIComponent(defaultText);
+      let url;
+      
+      // 根据不同平台构建跳转链接
+      switch(scheme) {
+        case 'douyin':
+          url = `snssdk1128://create/video?title=${encodedText}`;
+          break;
+        case 'xiaohongshu':
+          url = `xiaohongshu://notes/edit?content=${encodedText}`;
+          break;
+        case 'kuaishou':
+          url = `kuaishou://edit?text=${encodedText}`;
+          break;
+      }
       
       try {
-        window.location.href = douyinUrl;
-        setTimeout(() => showToast('若未跳转，请手动打开抖音', false), 1500);
+        window.location.href = url;
+        setTimeout(() => showToast(`若未跳转，请手动打开${name}`, false), 1500);
       } catch (err) {
-        showToast('请手动打开抖音上传素材', false);
+        showToast(`请手动打开${name}上传素材`, false);
       }
+    }
+
+    // 绑定按钮事件
+    document.getElementById('douyin-btn').addEventListener('click', () => {
+      openSocialApp('douyin', '抖音');
+    });
+    
+    document.getElementById('xiaohongshu-btn').addEventListener('click', () => {
+      openSocialApp('xiaohongshu', '小红书');
+    });
+    
+    document.getElementById('kuaishou-btn').addEventListener('click', () => {
+      openSocialApp('kuaishou', '快手');
     });
   </script>
 </body>
